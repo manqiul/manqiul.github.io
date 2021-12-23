@@ -1,12 +1,12 @@
 ---
 layout: page
-title: submenus
+title: interests
 nav: true
 dropdown: true
 children: 
-    - title: publications
-      permalink: /publications/
+    - title: photography
+      permalink: /photography/
     - title: divider
-    - title: projects
-      permalink: /projects/
+    - title: reading
+      permalink: /reading/
 ---
