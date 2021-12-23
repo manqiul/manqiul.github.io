@@ -8,6 +8,8 @@ profile:
   align: right
   image: stars_1.png
 
+experience: true  # includes a list of news items
+
 news: true  # includes a list of news items
 
 social: true  # includes social icons at the bottom of the page
