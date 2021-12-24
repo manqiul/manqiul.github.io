@@ -1,7 +1,7 @@
 ---
 layout: distill
 title: ATLivingSafe
-description: An interactive safe housing recommendation site.
+description: An interactive safe housing recommendation site, evaluating routes and location safeness.
 img: assets/img/atl_cover.png
 importance: 1
 category: work
