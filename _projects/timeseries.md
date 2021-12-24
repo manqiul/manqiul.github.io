@@ -8,4 +8,4 @@ category: work
 ---
 
 
-<iframe src="https://drive.google.com/file/d/1Eyp1TuoMS2DfBUGLOqVGiCuPQvK-3cyr/view?usp=sharing" width="100%" height="1000px"></iframe>
+<iframe src="https://github.com/manqiul/manqiul.github.io/blob/master/assets/pdf/Temprature%20Time%20Series%20Project%20.pdf" width="100%" height="1000px"></iframe>
