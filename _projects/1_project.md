@@ -5,6 +5,13 @@ description: An interactive safe housing recommendation site.
 img: assets/img/atl_cover.png
 importance: 1
 category: work
+authors:
+  - name: Qian Huang
+  - name: Manqiu Liu
+  - name: Yucheng Liang
+  - name: Chukang Zhong
+  - name: Jia Shi
+date: 2021-12-08
 toc:
   - name: Overview
   - name: Innovations
