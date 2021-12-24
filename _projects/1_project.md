@@ -1,80 +1,62 @@
 ---
-layout: page
-title: project 1
-description: a project with a background image
-img: assets/img/12.jpg
+layout: distill
+title: ATLivingSafe
+description: An interactive safe housing recommendation site.
+img: assets/img/atl_cover.png
 importance: 1
 category: work
+toc:
+  - name: Overview
+  - name: Innovations
+  - name: Methods
+  - name: Data
+  - name: Analytics
+  - name: Visualizations
 ---
 
-Every project has a beautiful feature showcase page.
-It's easy to include images in a flexible 3-column grid format.
-Make your photos 1/3, 2/3, or full width.
+## Overview 
+We created a safety-oriented apartment listing site that considers each property listing as a web of routes centered at the apartment and expanding into the wider neighborhood.  
 
-To give your project a background in the portfolio page, just add the img tag to the front matter like so:
+This site uses React.js for the frontend, Node.js for the backend, and MongoDB for the database.
 
-    ---
-    layout: page
-    title: project
-    description: a project with a background image
-    img: /assets/img/12.jpg
-    ---
+## Innovations
+1. We designed a safety-oriented apartment recom- mendation site for students and incorporated the safe-
+ness of apartment’s surrounding areas and the safeness of their daily routes.  
+
+2. We encoded geographical data into grids and built predictive model to evaluate the safeness of each grid, which incorporated the adjacent effects of crime inci- dents and public facilities as well as reduced computa- tional cost.  
+
+3. We visualized the safeness of areas and routes as well as the total safety score, which explicitly showed the overall safeness of chosen student apartments.  
+
+5. We enabled our users customize their daily visit spots and calculate safety score accordingly.
+
+
+## Methods
+We assessed users' everyday travels from the apartment to areas like universities, stores, and other places while evaluating the safety of a certain unit. Then We constructed a predictive model based on apartment data from online scraping and crime statistics from the previous ten years to calculate a safety score for each grid on the map, then mapped apartments and routes to each grid to arrive at our safety score.  
+
+
+## Data
+1. Apartment Data.   
+
+2. Crime Data. We analyzed the crime data from 2009 to 2021 from the Atlanta Police Department and predicted future crime rate based on time series analysis. We also did exploration data analysis on the crime data.  
+
+3. Geographic Data. We collected our geographical data from OpenStreetMap, which contains information of geomorphic characteristics, public transportation, public facilities.  
+
+## Analytics
+
+1. **Location Safety Score Evaluation** We split the area of Atlanta into 260*280 grids based on longitude and latitude. In order to incorporate adjacent crime incidents for each grid, we applied kernel method on the matrix.
+2. **Route Safety Score Evaluation** We computed the safety score of a route and evaluated the safety status by utilizing the waypoints data. To compute the safety score of a route, we add the safety score of all the waypoints on the route.
+3. **Dashboard** If the user is logged into our system with a Google account, the apartments they have saved will be stored in our server database and will be displayed when the users open the dashboard under their accounts.
+
+
+## Visualizations
 
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.html path="assets/img/1.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.html path="assets/img/3.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.html path="assets/img/5.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
+        {% include figure.html path="assets/img/atlivingsafe.png" title="atlivingsafe image" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
 <div class="caption">
-    Caption photos easily. On the left, a road goes through a tunnel. Middle, leaves artistically fall in a hipster photoshoot. Right, in another hipster photoshoot, a lumberjack grasps a handful of pine needles.
-</div>
-<div class="row">
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.html path="assets/img/5.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-<div class="caption">
-    This image can also have a caption. It's like magic.
+    ATLivingSafe Site
 </div>
 
-You can also put regular text between your rows of images.
-Say you wanted to write a little bit about your project before you posted the rest of the images.
-You describe how you toiled, sweated, *bled* for your project, and then... you reveal it's glory in the next row of images.
-
-
-<div class="row justify-content-sm-center">
-    <div class="col-sm-8 mt-3 mt-md-0">
-        {% include figure.html path="assets/img/6.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm-4 mt-3 mt-md-0">
-        {% include figure.html path="assets/img/11.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-<div class="caption">
-    You can also have artistically styled 2/3 + 1/3 images, like these.
-</div>
-
-
-The code is simple.
-Just wrap your images with `<div class="col-sm">` and place them inside `<div class="row">` (read more about the <a href="https://getbootstrap.com/docs/4.4/layout/grid/">Bootstrap Grid</a> system).
-To make images responsive, add `img-fluid` class to each; for rounded corners and shadows use `rounded` and `z-depth-1` classes.
-Here's the code for the last row of images above:
-
-{% raw %}
-```html
-<div class="row justify-content-sm-center">
-    <div class="col-sm-8 mt-3 mt-md-0">
-        {% include figure.html path="assets/img/6.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm-4 mt-3 mt-md-0">
-        {% include figure.html path="assets/img/11.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-```
-{% endraw %}
+See the demo video [here](https://youtu.be/iW4vNfS1OnQ) 
