@@ -1,6 +1,6 @@
 ---
 layout: page
-title: interests
+title: Interests
 nav: true
 dropdown: true
 children: 
