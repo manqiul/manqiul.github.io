@@ -4,9 +4,9 @@ title: interests
 nav: true
 dropdown: true
 children: 
-    - title: photography
+    - title: Photography
       permalink: /photography/
     - title: divider
-    - title: reading
+    - title: Reading
       permalink: /reading/
 ---
