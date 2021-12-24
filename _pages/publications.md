@@ -13,7 +13,7 @@ nav: true
 <h2 class="category">Work Experiences</h2>
 {% for y in page.yearsa %}
   <h2 class="year">{{y}}</h2>
-  {% bibliography -f papers -q @*[year={{y}} and type=1]* %}
+  {% bibliography -f papers -q @*[year={{y}}]* @*[type=1]* %}
 {% endfor %}
 
 </div>
