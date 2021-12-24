@@ -26,6 +26,9 @@ We created a safety-oriented apartment listing site that considers each property
 
 This site uses React.js for the frontend, Node.js for the backend, and MongoDB for the database.
 
+See our project [here](https://github.com/gtfiveguys/atl-living-safe-00)  :sunglasses:
+See the demo video [here](https://youtu.be/iW4vNfS1OnQ)  :computer:
+
 ## Innovations
 1. We designed a safety-oriented apartment recom- mendation site for students and incorporated the safe-
 ness of apartment’s surrounding areas and the safeness of their daily routes.  
@@ -66,4 +69,3 @@ We assessed users' everyday travels from the apartment to areas like universitie
     ATLivingSafe Site
 </div>
 
-See the demo video [here](https://youtu.be/iW4vNfS1OnQ) 
