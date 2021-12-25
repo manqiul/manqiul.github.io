@@ -3,7 +3,7 @@ layout: post
 title:  Notes - Data-Informed Product Building
 date:   2021-11-26 16:40:16
 description: Study notes for product analysis.
-tags: formatting links
+tags: ProductAnalysis
 categories: notes
 ---
 
