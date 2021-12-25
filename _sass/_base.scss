@@ -277,8 +277,8 @@ footer.sticky-bottom {
   li {
     border-bottom: 1px solid var(--global-divider-color);
     list-style: none;
-    padding-top: 2rem;
-    padding-bottom: 2rem;
+    padding-top: 1rem;
+    padding-bottom: 0rem;
     .post-meta {
       color: var(--global-text-color-light);
       font-size: 0.875rem;
@@ -287,7 +287,7 @@ footer.sticky-bottom {
     .post-tags {
       color: var(--global-text-color-light);
       font-size: 0.875rem;
-      padding-top: 0.25rem;
+      padding-top: 0.1rem;
     }
     a {
       color: var(--global-text-color);
@@ -548,7 +548,7 @@ html.transition *:after {
   .post-tags{
     color: var(--global-text-color-light);
     font-size: 0.875rem;
-    padding-bottom: 1rem;
+    padding-bottom: 0rem;
     a {
       color: var(--global-text-color-light);
       text-decoration: none;
