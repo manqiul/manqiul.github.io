@@ -9,7 +9,6 @@ nav: true
 **COURSES IN PROGRESS**
 
  - Georgia Tech
-
 ```
 CS - Computer Vision
 CS - Natural Language
@@ -20,7 +19,6 @@ MGT - Data Analytics Business
 **COURSES TAKEN**
 
  - Georgia Tech
-
 ```
 CS - Machine Learning
 CSE - Data Visualization and Analytics
