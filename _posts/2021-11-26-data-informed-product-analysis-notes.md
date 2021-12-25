@@ -7,7 +7,6 @@ tags: formatting links
 categories: notes
 ---
 
-# Data-Informed Product Building
 
 These notes were based on the [sequoia-data-science](https://medium.com/sequoia-capital/sequoia-data-science-8a76098035a4) series.
 
