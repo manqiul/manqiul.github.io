@@ -15,7 +15,7 @@ footer_text: >
   Photos from <a href="https://unsplash.com" target="_blank">Unsplash</a>.
 
 lang: en # the language of your site (for example: en, fr, cn, ru, etc.)
-icon: 🌟 # the emoji used as the favicon
+icon: 🌌 # the emoji used as the favicon
 url: https://manqiul.github.io # the base hostname & protocol for your site
 baseurl:  # the subpath of your site, e.g. /blog/
 last_updated: false # set to true if you want to display last updated in the footer
@@ -80,7 +80,7 @@ panelbear_analytics: XXXXXXXXX # panelbear analytics site ID
 # -----------------------------------------------------------------------------
 
 blog_name: Manqiu's Blog  # your blog must have a name for it to show up in the nav bar
-blog_description: Hi here are some posts about coding, NLP and machine learning. :milky_way:
+blog_description: Hi here are some posts about coding, NLP and machine learning.
 permalink: /blog/:year/:title/
 
 # Pagination
