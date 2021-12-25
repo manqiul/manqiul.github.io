@@ -2,10 +2,42 @@
 layout: page
 permalink: /courses/
 title: Courses
-description: Materials for courses you taught. Replace this text with your description.
+description: 
 nav: true
 ---
 
-For now, this page is assumed to be a static description of your courses. You can convert it to a collection similar to `_projects/` so that you can have a dedicated page for each course.
+**COURSES IN PROGRESS**
 
-Organize your courses by years, topics, or universities, however you like!
+ - Georgia Tech
+
+```
+CS - Computer Vision
+CS - Natural Language
+ISYE - High Dimensional Data Analytics
+MGT - Data Analytics Business
+```
+
+**COURSES TAKEN**
+
+ - Georgia Tech
+
+```
+CS - Machine Learning
+CSE - Data Visualization and Analytics
+ISYE - Deterministic Optimization
+ISYE - Simulation
+```
+ - UC Davis
+```
+CS - Intro to Algorithm
+STAT - Time Series Analysis
+MATH - Stochastic Process
+MATH - Real Analysis
+MATH - Differential Equations
+```
+ - Renmin University of China
+```
+CS - Machine Learning (Undergrad Session)
+CS - Practical Python Programming
+ECON - Econometrics
+```
