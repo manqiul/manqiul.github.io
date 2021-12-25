@@ -2,12 +2,14 @@
 layout: page
 permalink: /experiences/
 title: Experiences
-description: Know more about me via [LinkedIn](https://www.linkedin.com/in/maqliu/).
+description: 
 yearsa: [2022,2021,2019]
 yearsb: [2022,2020,2019]
 types: [work, edu]
 nav: true
 ---
+
+Know more about me via [LinkedIn](https://www.linkedin.com/in/maqliu/).
 
 <div class="publications">
 <h2 class="category">Work Experiences</h2>
