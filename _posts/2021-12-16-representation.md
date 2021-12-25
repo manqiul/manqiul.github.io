@@ -8,13 +8,13 @@ categories: PaperReading
 toc: true
 ---
 
-# Distributed representations 1: Word embedding
+## Distributed representations 1: Word embedding
 
-## Distributed Representations of Words and Phrases and their Compositionality
+### Distributed Representations of Words and Phrases and their Compositionality
 
 Before we advance to distributed representations of words, we first need to understand the "sparse representations"
 
-### Understanding Sparse Representations
+#### Understanding Sparse Representations
 
 Examples:
 
@@ -30,13 +30,13 @@ Drawbacks:
 
 Source: DLT lecture notes by Chao Zhang, Georgia Tech
 
-### Understanding Dimension Reduction and Topic Modeling
+#### Understanding Dimension Reduction and Topic Modeling
 
 - Latent Semantic Analysis
   - Using SVD, mapping data into low-dimensional representation by only selecting top k topics
   - Source: [LSA Youtube](https://www.youtube.com/playlist?list=PLroeQp1c-t3qwyrsq66tBxfR6iX6kSslt)
 
-### Understanding word embedding
+#### Understanding word embedding
 
 - word2vec[co-occurrence statistics], Local context window methods
   - CBoW: use a window to predict center word
@@ -49,13 +49,13 @@ Source: DLT lecture notes by Chao Zhang, Georgia Tech
 
 source: [skip-gram](https://towardsdatascience.com/skip-gram-nlp-context-words-prediction-algorithm-5bbf34f84e0c), [skip-gram youtube](https://www.youtube.com/watch?v=pOqz6KuvLV8), [paper link](https://arxiv.org/pdf/1301.3781.pdf)
 
-### About this Paper
+#### About this Paper
 
 This paper mainly discussed the extensions of Skip-gram model. First is to use hierarchical softmax to reduce computational complexity. Second is to use negative sampling to reduce noise. Third is to subsampling the frequent word like "a", "the".
 
 source: [word embedding glove](https://jonathan-hui.medium.com/nlp-word-embedding-glove-5e7f523999f6)
 
-## GloVe: Global Vectors for Word Representation
+### GloVe: Global Vectors for Word Representation
 
 First this paper discussed the drawbacks of LSA and local context window methods:
 
@@ -67,9 +67,9 @@ First this paper discussed the drawbacks of LSA and local context window methods
 
 source: [glove youtube](https://www.youtube.com/watch?v=QoUYlxl1RGI), [glove medium](https://jonathan-hui.medium.com/nlp-word-embedding-glove-5e7f523999f6), [glove csdn](https://blog.csdn.net/coderTC/article/details/73864097)
 
-# Distributed Representation 2: Deep Contextual Representation
+## Distributed Representation 2: Deep Contextual Representation
 
-## Deep contextualized word representations (ELMo)
+### Deep contextualized word representations (ELMo)
 
 [ELMo](https://www.analyticsvidhya.com/blog/2019/03/learn-to-use-elmo-to-extract-features-from-text/)
 
@@ -77,7 +77,7 @@ source: [glove youtube](https://www.youtube.com/watch?v=QoUYlxl1RGI), [glove med
 
 {% include figure.html path="assets/img/elmo.png" class="img-fluid rounded z-depth-1" %}
 
-## BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding
+### BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding
 
 [BERT youtube](https://www.youtube.com/watch?v=xI0HHN5XKDo)
 
