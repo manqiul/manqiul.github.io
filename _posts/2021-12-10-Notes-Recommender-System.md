@@ -4,7 +4,7 @@ title: Notes - Recommender System
 date: 2021-12-10 16:40:16
 description: Study notes for recommender system, such as hacker news formula, ranking, etc.
 tags: MachingLearning
-categories: notes
+categories: Notes
 ---
 
 This is based on [udemy course recommender system](https://www.udemy.com/course/recommender-systems/learn/lecture/11686566#overview)
