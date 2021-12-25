@@ -3,7 +3,7 @@ layout: post
 title: Notes - Recommender System
 date: 2021-12-10 16:40:16
 description: Study notes for recommender system, such as hacker news formula, ranking, etc.
-tags: formatting links
+tags: MachingLearning
 categories: notes
 ---
 
