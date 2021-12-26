@@ -9,7 +9,7 @@ types: [work, edu]
 nav: true
 ---
 
-Know more about me via [LinkedIn](https://www.linkedin.com/in/maqliu/).
+Know more about my experiences via [LinkedIn](https://www.linkedin.com/in/maqliu/).
 
 <div class="publications">
 <h2 class="category">Work Experiences</h2>
