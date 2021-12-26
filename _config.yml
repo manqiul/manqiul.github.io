@@ -80,7 +80,7 @@ panelbear_analytics: XXXXXXXXX # panelbear analytics site ID
 # -----------------------------------------------------------------------------
 
 blog_name: Manqiu's Blog  # your blog must have a name for it to show up in the nav bar
-blog_description: Hi here are some posts about coding, NLP and machine learning.
+blog_description: Posts about Analytics, NLP and machine learning.
 permalink: /blog/:year/:title/
 
 # Pagination
