@@ -1,10 +1,10 @@
 ---
 layout: post
-title: Notes - Machine Learning by Zhihua Zhou
+title: Machine Learning Study Notes by Zhihua Zhou
 date: 2021-08-12 22:01:00
 description: Model selection, linear model, tree, SVM, etc.
-tags: MachineLearning
-categories: Notes
+tags: machinelearning
+categories: notes
 ---
 
 {% include figure.html path="assets/img/ml-01.jpg" class="img-fluid rounded z-depth-1" %}
