@@ -1,10 +1,10 @@
 ---
 layout: post
-title: Notes - Regression
+title: Linear Regression and Logistic Regression: Training, Regularization, Odds
 date: 2021-12-25 12:40:16
 description: pseudoinverse, GD, regularization, logistic regression, odds
-tags: MachineLearning
-categories: Notes
+tags: machinelearning
+categories: notes
 toc: true
 ---
 
@@ -43,11 +43,11 @@ As it takes a lot to calculate the inverse of $X^TX$, we can use pseudo inverse 
 [source2](https://spartanideas.msu.edu/2015/10/21/regression-via-pseudoinverse/)
 [source3](https://mathformachines.com/posts/least-squares-with-the-mp-inverse/)
 
-By definition, pseudoinverse of matrix $X^+=(X^TX)^{-1}X^T$. So if the $X$ is invertible, using pseudoinverse $w=X^+y$ to calculate $w$ would be the same as the closed form.
+By definition, pseudoinverse of matrix $$X^+=(X^TX)^{-1}X^T$$. So if the $X$ is invertible, using pseudoinverse $$w=X^+y$$ to calculate $w$ would be the same as the closed form.
 
-- Note: in this case, to reduce the calculation cost, we can use singular vector decomposition $X = UΣV^T$ to calculate $X^+$, which is $X^+ = 𝑉Σ^{−1}𝑈^T$. The $Σ^{−1}$ is easy to compute if we just take the reciprocal of the diagnals.
+- Note: in this case, to reduce the calculation cost, we can use singular vector decomposition $$X = UΣV^T$$ to calculate $$X^+$$, which is $$X^+ = 𝑉Σ^{−1}𝑈^T$$. The $$Σ^{−1}$$ is easy to compute if we just take the reciprocal of the diagnals.
 
-**When $X$ is not invertible, the pseudoinverse form would still work** (in a pseudo way), which is better than the closed form. In this case, the diagnol of $Σ$ would have zero values. so $X^+ = 𝑉Σ^{+}𝑈^T$, where the $Σ^{+}$ would be taking the non-zero values' reciprocal and keep the zero values zero.
+**When $X$ is not invertible, the pseudoinverse form would still work** (in a pseudo way), which is better than the closed form. In this case, the diagnol of $Σ$ would have zero values. so $$X^+ = 𝑉Σ^{+}𝑈^T$$, where the $$Σ^{+}$$ would be taking the non-zero values' reciprocal and keep the zero values zero.
 
 **The closed form would have $O(n^3)$ complexity while the SVD method would have $O(n^2)$ computational complexity.**
 
@@ -92,16 +92,16 @@ If you do not do this, for example if the instances are sorted by label, then SG
 
 **1. Ridge Regression**
 
-- regularization term: $\alpha\sum^n\theta^2$, added to cost function. (It should not be added into evaluation function, as by objective, we aimed at decreasing the loss.)
-- The bias term $θ_0$ is not regularized.
+- regularization term: $$\alpha\sum^n\theta^2$$, added to cost function. (It should not be added into evaluation function, as by objective, we aimed at decreasing the loss.)
+- The bias term $$θ_0$$ is not regularized.
 - The input data need to be regularized.
-- $\hat θ=(X^TX+\alpha I)^{−1} X^T y$
+- $$\hat θ=(X^TX+\alpha I)^{−1} X^T y$$
 
 **2. Lasso Regression**
 
-- regularization term: $\alpha\sum^n|\theta|$.
+- regularization term: $$\alpha\sum^n|\theta|$$.
 - Tends to completely elimi‐ nate the weights of the least important features, and return sparse outcome.
-- $\theta^T\theta = Constraint = C$, when $\alpha$ goes up, $C$ goes down.
+- $$\theta^T\theta = Constraint = C$$, when $$\alpha$$ goes up, $$C$$ goes down.
 
 <blockquote>
 
@@ -129,27 +129,27 @@ Using GD, and stop when validation error goes up. For SGD and Mini Batch, the cu
 
 ### Logistic Regression
 
-- Form: $\hat p = \sigma(X^T\theta)$, where $\sigma(t)=\frac{1}{1+exp^{-t}}$.
+- Form: $$\hat p = \sigma(X^T\theta)$$, where $$\sigma(t)=\frac{1}{1+exp^{-t}}$$.
 
-- t is called logit, $logit(p)=log(\frac{p}{1-p})$,is the inverse of logistic function. $t = logit(\hat p)$.
+- t is called logit, $$logit(p)=log(\frac{p}{1-p})$$,is the inverse of logistic function. $$t = logit(\hat p)$$.
 
 - Logit is also called log-odds, as it is the log of the ratio between the estimated probability for the positive class and the estimated probability for the negative class.
 
-- MLE: $likelihood = \hat y * y + (1 – \hat y) * (1 – y)$,
+- MLE: $$likelihood = \hat y * y + (1 – \hat y) * (1 – y)$$,
 
   - This function will always return a large probability when the model is close to the matching class value, and a small value when it is far away, for both y=0 and y=1 cases. [Source](https://machinelearningmastery.com/logistic-regression-with-maximum-likelihood-estimation/)
 
-- log-likelihood = $likelihood = log(\hat y) * y + log(1 – \hat y) * (1 – y)$
+- log-likelihood = $$likelihood = log(\hat y) * y + log(1 – \hat y) * (1 – y)$$
 
   - equivalent to cross-entropy
-  - Note: Cross entropy = $-(log(q_{class0}) * p_{class0} + log(q_{class1}) * p_{class1})$
+  - Note: Cross entropy = $$-(log(q_{class0}) * p_{class0} + log(q_{class1}) * p_{class1})$$
 
 - Cost function: $$log loss=-\frac{1}{m}\sum^m_{i=1}(y^ilog(\hat p^i)+(1-y^i)log(\hat (1-p^i)))$$
 
   - No closed form.
 
 - Linear decision boundary
-  - It is the the set of points x such that $\theta_0 + \theta_1x_1 + \theta_2x_2 = 0$, which defines a straight line.
+  - It is the the set of points x such that $$\theta_0 + \theta_1x_1 + \theta_2x_2 = 0$$, which defines a straight line.
 
 {% include figure.html path="assets/img/mlnew4.png" class="img-fluid rounded z-depth-1" %}
 
