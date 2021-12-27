@@ -1,10 +1,10 @@
 ---
 layout: post
-title:  Notes - Math Review
+title:  Math Foundations Review 
 date: 2021-08-16 21:01:00
 description: Real analysis, probability, linear algebra, differential equations, stochastic process.
-tags: Math
-categories: Notes
+tags: math
+categories: notes
 ---
 
 Math refreshing notes.
