@@ -1,10 +1,10 @@
 ---
 layout: post
-title: Paper Reading - NLP Word Representation
+title: Word Representation Methods using Deep Learning 
 date: 2021-12-13 08:40:16
 description: Paper reading notes for LSA, Skip-gram, GloVe, ELMo and BERT.
-tags: NLP
-categories: PaperReading
+tags: nlp
+categories: paperreading
 toc: true
 ---
 
