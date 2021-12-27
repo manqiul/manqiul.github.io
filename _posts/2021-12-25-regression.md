@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Linear Regression and Logistic Regression: Training, Regularization, Odds
+title: Regression Training, Regularization and Odds
 date: 2021-12-25 12:40:16
 description: pseudoinverse, GD, regularization, logistic regression, odds
 tags: machinelearning
