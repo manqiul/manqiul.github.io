@@ -1,10 +1,10 @@
 ---
 layout: post
-title:  Notes - Data-Informed Product Building
+title:  Metrics and Analytics of Product Building 
 date:   2021-11-26 16:40:16
-description: Study notes for product analysis.
-tags: ProductAnalysis
-categories: Notes
+description: Product evolution, retention, segmentation.
+tags: productanalysis
+categories: notes
 ---
 
 
