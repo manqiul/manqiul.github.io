@@ -1,15 +1,14 @@
 ---
 layout: post
-title: Notes - Recommender System
+title: Recommendation Algorithm Basics
 date: 2021-12-10 16:40:16
 description: Study notes for recommender system, such as hacker news formula, ranking, etc.
-tags: MachingLearning
-categories: Notes
+tags: machinglearning
+categories: notes
 ---
 
 This is based on [udemy course recommender system](https://www.udemy.com/course/recommender-systems/learn/lecture/11686566#overview)
 
-# Basics
 
 ## 1. Hacker News Formula
 
