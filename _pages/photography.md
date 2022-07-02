@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Photography
-permalink: /photo/
+permalink: /photo1/
 description: 
 nav: true
 display_categories: [Cities, Animals]
