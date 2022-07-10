@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<title>
+
+  Manqiu  L.
+
+
+  | Decision Tree Model - Advanced Review
+
+</title>
+<meta name="description" content="A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design.
+">
+
+<!-- Open Graph -->
+
+
+<!-- Bootstrap & MDB -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" integrity="sha512-MoRNloxbStBcD8z3M/2BmnT+rg4IsMxPkXaGh2zD6LGNNFE80W3onsAhRcMAMrSoyWL9xD7Ert0men7vR8LUZg==" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" integrity="sha512-RO38pBRxYH3SoOprtPTD86JFOclM51/XTIdEPh5j8sj4tp8jmQIx26twG52UaLi//hQldfrh7e51WzP9wuP32Q==" crossorigin="anonymous" />
+
+<!-- Fonts & Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"  integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.0/css/academicons.min.css" integrity="sha512-W4yqoT1+8NLkinBLBZko+dFB2ZbHsYLDdr50VElllRcNt2Q4/GSs6u71UHKxB7S6JEMCp5Ve4xjh3eGQl/HRvg==" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons">
+
+<!-- Code Syntax Highlighting -->
+<link rel="stylesheet" href="https://gitcdn.link/repo/jwarby/jekyll-pygments-themes/master/github.css" />
+
+<!-- Styles -->
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌌</text></svg>">
+
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="canonical" href="https://manqiul.github.io/blog/2022/tree/">
+
+
+<!-- Dark Mode -->
+<script src="/assets/js/theme.js"></script>
+<script src="/assets/js/dark_mode.js"></script>
+
+
+  </head>
+
+  <body class="fixed-top-nav ">
+
+    <!-- Header -->
+
+    <header>
+
+    <!-- Nav Bar -->
+    <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top">
+    <div class="container">
+      
+      <a class="navbar-brand title font-weight-lighter" href="https://manqiul.github.io/">
+       <span class="font-weight-bold">Manqiu</span>   L.
+      </a>
+      
+      <!-- Navbar Toggle -->
+      <button class="navbar-toggler collapsed ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar top-bar"></span>
+        <span class="icon-bar middle-bar"></span>
+        <span class="icon-bar bottom-bar"></span>
+      </button>
+      <div class="collapse navbar-collapse text-right" id="navbarNav">
+        <ul class="navbar-nav ml-auto flex-nowrap">
+          <!-- About -->
+          <li class="nav-item ">
+            <a class="nav-link" href="/">
+              About
+              
+            </a>
+          </li>
+          
+          <!-- Blog -->
+          <li class="nav-item active">
+            <a class="nav-link" href="/blog/">
+              Blog
+              
+            </a>
+          </li>
+          
+          <!-- Other pages -->
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="nav-item ">
+              <a class="nav-link" href="/courses/">
+                Courses
+                
+              </a>
+          </li>
+          
+          
+          
+          
+          
+          <li class="nav-item ">
+              <a class="nav-link" href="/experiences/">
+                Experiences
+                
+              </a>
+          </li>
+          
+          
+          
+          
+          
+          <li class="nav-item dropdown ">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Interests
+                
+              </a>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+              
+              
+                <a class="dropdown-item" href="/photography/">Photography</a>
+              
+              
+              
+                <div class="dropdown-divider"></div>
+              
+              
+              
+                <a class="dropdown-item" href="/reading/">Reading</a>
+              
+              
+              </div>
+          </li>
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="nav-item ">
+              <a class="nav-link" href="/projects/">
+                Projects
+                
+              </a>
+          </li>
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+            <div class="toggle-container">
+              <a id="light-toggle">
+                  <i class="fas fa-moon"></i>
+                  <i class="fas fa-sun"></i>
+              </a>
+            </div>
+          
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+</header>
+
+
+    <!-- Content -->
+
+    <div class="container mt-5">
+      
+
+
+
+
+
+<div class="post">
+
+  <header class="post-header">
+    <h2 class="post-title">Decision Tree Model - Advanced Review</h2>
+    <p class="post-meta">January 1, 2022</p>
+    <p class="post-tags">
+      <a href="/blog/2022"> <i class="fas fa-calendar fa-sm"></i> 2022 </a>
+      
+        ·  
+        
+        <a href="/blog/tag/machinelearning">
+          <i class="fas fa-hashtag fa-sm"></i> machinelearning</a>  
+          
+      
+
+      
+        ·  
+        
+        <a href="/blog/category/notes">
+          <i class="fas fa-tag fa-sm"></i> notes</a>  
+          
+      
+
+    </p>
+  </header>
+
+  <article class="post-content">
+    <h2 id="decision-tree">Decision Tree</h2>
+
+<h3 id="key-takeaways">Key Takeaways</h3>
+
+<p><a href="https://towardsdatascience.com/decision-trees-6-important-things-to-always-remember-85636858da51" target="_blank" rel="noopener noreferrer">source</a></p>
+
+<ul>
+  <li>No need to scale or center the data.</li>
+  <li>Very likely to overfit the training data(not generalizing well).</li>
+  <li>Very few assumptions about the training data( the data is non-linear). Non-parametric model: no assumptions about the shape of data.</li>
+  <li>Effective learning with small training data, however very sensitive to small variations in the training data.</li>
+  <li>Decision Boundary is irregular. Usually orthogonal decision boundaries.</li>
+  <li>Probabilities: can return the class corresponding probability in the final tree node.</li>
+  <li>
+    <p>Missing value:</p>
+
+    <ul>
+      <li>ignoring the missing values</li>
+      <li>treating the missing values as another category (in case of a nominal feature)</li>
+      <li>all goes to the node which already has the biggest number of instances (CART, is not the primary rule)</li>
+      <li>distribute to all children, but with diminished weights, proportional with the number of instances from each child node (C45 and others)</li>
+    </ul>
+  </li>
+  <li>
+<strong>Complexity</strong>, <a href="https://towardsdatascience.com/almost-everything-you-need-to-know-about-decision-trees-with-code-dc026172a284" target="_blank" rel="noopener noreferrer">source</a>: Training complexity: decision trees are generally approximately balanced, the number of node would be approximately \(O(log_2(m))\). Each node, we need to go through all the features and all the samples to calculate the split and impurity, which gives us complexity of \(O(nmlog_2(m))+O(nm) =&gt;O(nmlog_2(m))\). (nmlogm is for sorting by each feature.O(nm) is going through each data point for each feature)(m is the number of samples,n is number of features.). Prediction complexity is just O(log2(m))</li>
+</ul>
+
+<h3 id="training-algorithm">Training Algorithm</h3>
+
+<p><a href="https://quantdare.com/decision-trees-gini-vs-entropy/" target="_blank" rel="noopener noreferrer">source</a></p>
+
+<p><strong>Gini Impurity</strong></p>
+
+\[GiniIndex = 1-\Sigma p_i^2\]
+
+<p>The i stands for class i. Gets its maximum value when the probability of the two classes is the same. The minimum value of Gini Index is 0, where the data is pure and only has one class.</p>
+
+<p><strong>Entropy</strong></p>
+
+\[Entropy=–\Sigma p_i⋅log_2⋅p_i\]
+
+<p>Gets its maximum value when the probability of the two classes is the same. Data is pure when the entropy has its minimum value, which is 0.</p>
+
+<p><strong>Gini vs. Entropy</strong></p>
+
+<ul>
+  <li>Gini Index has values inside the interval [0, 0.5] whereas the interval of the Entropy is [0, 1].</li>
+  <li>Computationally, entropy is more complex since it makes use of logarithms and consequently, the calculation of the Gini Index will be faster.</li>
+  <li>Most of the time it does not make a big difference. However, when they differ, Gini impurity tends to isolate the most frequent class in its own branch of the tree, while entropy tends to produce slightly more balanced trees.</li>
+</ul>
+
+<figure>
+
+  <picture>
+    
+      <source media="(max-width: 480px)" srcset="/assets/img/tree/tree2-480.webp"></source>
+    
+      <source media="(max-width: 800px)" srcset="/assets/img/tree/tree2-800.webp"></source>
+    
+      <source media="(max-width: 1400px)" srcset="/assets/img/tree/tree2-1400.webp"></source>
+    
+
+    <!-- Fallback to the original file -->
+    <img class="img-fluid rounded z-depth-1" src="/assets/img/tree/tree2.png">
+
+  </picture>
+
+  
+
+</figure>
+
+<p><strong>Calculation</strong></p>
+
+<p>Gini gain = \(Gini(Parent)\) - Weighted average of \(Gini(Child)\)</p>
+
+<p>For each node, we choose the feature and threshold that have the most information gain.</p>
+
+<h3 id="regularization">Regularization</h3>
+
+<p><strong>Hyperparameters</strong>
+Increasing min hyperparameters or reducing max hyperparameters will regularize the model.</p>
+
+<ul>
+  <li>min_samples_split (the minimum number of samples a node must have before it can be split)</li>
+  <li>min_samples_leaf (the minimum number of samples a leaf node must have)</li>
+  <li>min_weight_fraction_leaf (same as min_samples_leaf but expressed as a fraction of the total number of weighted instances)</li>
+  <li>max_leaf_nodes (maximum number of leaf nodes)</li>
+  <li>max_features (maximum number of features that are evaluated for splitting at each node)</li>
+</ul>
+
+<p><strong>Pruning</strong></p>
+
+<p><a href="https://en.wikipedia.org/wiki/Decision_tree_pruning" target="_blank" rel="noopener noreferrer">source</a></p>
+
+<p><strong>Pruning processes can be divided into two types (pre- and post-pruning).</strong></p>
+
+<p><strong>Pre-pruning</strong> procedures prevent a complete induction of the training set by replacing a stop () criterion in the induction algorithm (e.g. max. Tree depth or information gain (Attr)&gt; minGain). Pre-pruning methods are considered to be more efficient because they do not induce an entire set, but rather trees remain small from the start. <strong>Prepruning methods share a common problem, the horizon effect. This is to be understood as the undesired premature termination of the induction by the stop () criterion.</strong></p>
+
+<p><strong>Post-pruning</strong> (or just pruning) is the most common way of simplifying trees. Here, nodes and subtrees are replaced with leaves to reduce complexity. Pruning can not only significantly <strong>reduce the size but also improve the classification accuracy of unseen objects</strong>. It may be the case that the accuracy of the assignment on the train set deteriorates, but the accuracy of the classification properties of the tree increases overall.</p>
+
+<p>The procedures are differentiated on the basis of their approach in the tree (top-down or bottom-up).</p>
+
+<p><strong>Bottom-up pruning</strong>
+These procedures start at the last node in the tree (the lowest point). Following recursively upwards, they determine the relevance of each individual node. If the relevance for the classification is not given, the node is dropped or replaced by a leaf. The advantage is that no relevant sub-trees can be lost with this method. These methods include <strong>Reduced Error Pruning (REP), Minimum Cost Complexity Pruning (MCCP), or Minimum Error Pruning (MEP)</strong>.</p>
+
+<p><strong>Top-down pruning</strong>
+In contrast to the bottom-up method, this method starts at the root of the tree. Following the structure below, a relevance check is carried out which decides whether a node is relevant for the classification of all n items or not. By pruning the tree at an inner node, it can happen that an entire sub-tree (regardless of its relevance) is dropped. One of these representatives is <strong>pessimistic error pruning (PEP)</strong>, which brings quite good results with unseen items.</p>
+
+<p>A node whose children are all leaf nodes is considered unnecessary if the purity improvement it provides is not statistically significant.</p>
+
+<ol>
+  <li>Reduced error pruning (source:tamu.edu, cs663)</li>
+</ol>
+
+<ul>
+  <li>Classify examples in validation set
+    <ul>
+      <li>For each node:
+        <ul>
+          <li>Sum the errors over entire subtree</li>
+          <li>Calculate error on same example if converted to a leaf with majority class label</li>
+          <li>Prune node with highest reduction in error</li>
+          <li>Repeat until error no longer reduced</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<ol>
+  <li>Cost complexity pruning</li>
+</ol>
+
+<p><a href="http://mlwiki.org/index.php/Cost-Complexity_Pruning" target="_blank" rel="noopener noreferrer">source1</a>
+<a href="https://www.hds.utc.fr/~tdenoeux/dokuwiki/_media/en/trees.pdf" target="_blank" rel="noopener noreferrer">source2</a></p>
+
+<ol>
+  <li>Significant testing</li>
+</ol>
+
+<p>The \(\chi^2\) test: estimate the probability that the improvement is purely the result of chance (which is called the null hypothesis)</p>
+
+<h3 id="regression">Regression</h3>
+
+<p><a href="https://www.youtube.com/watch?v=g9c66TUylZ4" target="_blank" rel="noopener noreferrer">source</a></p>
+
+<p>The main difference is that regression tree split the training set in a way that minimizes the MSE. The predicted value for each region is always the <strong>average target value</strong> of the instances in that region.</p>
+
+\[J(k, t_k) = \frac{m_{left}}{m} MSE_{left} + \frac{m_{right}}{m} MSE_{right}\]
+
+<p>where:</p>
+
+\[MSE_{node}=\Sigma(\hat y_{node}-y^{i})^2\\
+\hat y_{node}=\frac{1}{m_{node}}\Sigma y^{i}\]
+
+<h3 id="limitation-and-methods">Limitation and Methods</h3>
+
+<p><strong>1. Overfitting</strong></p>
+
+<p><strong>2. Orthogonal decision boundaries</strong></p>
+
+<p>cannot generalized well when the ground truth of decision boundary has slope. One way is to use PCA first.</p>
+
+<figure>
+
+  <picture>
+    
+      <source media="(max-width: 480px)" srcset="/assets/img/tree/tree3-480.webp"></source>
+    
+      <source media="(max-width: 800px)" srcset="/assets/img/tree/tree3-800.webp"></source>
+    
+      <source media="(max-width: 1400px)" srcset="/assets/img/tree/tree3-1400.webp"></source>
+    
+
+    <!-- Fallback to the original file -->
+    <img class="img-fluid rounded z-depth-1" src="/assets/img/tree/tree3.png">
+
+  </picture>
+
+  
+
+</figure>
+
+<p><strong>3. Sparse features</strong></p>
+
+<p>Not designed to work with very sparse features. When data is sparse, decision trees overfit. Can use PCA.</p>
+
+<p><strong>4. Unstable</strong> <a href="https://towardsdatascience.com/decision-trees-d07e0f420175" target="_blank" rel="noopener noreferrer">source</a></p>
+
+<p>A small change in the dataset can make the tree structure unstable which can cause variance.</p>
+
+<p><strong>5. Imbalanced data</strong></p>
+
+<p>Reading: <a href="https://statistics.berkeley.edu/sites/default/files/tech-reports/666.pdf" target="_blank" rel="noopener noreferrer">Using Random Forest to Learn Imbalanced Data</a></p>
+
+<p>Decision tree learners create underfit trees if some classes are imbalanced. It is therefore recommended to balance the data set prior to fitting with the decision tree. <a href="https://towardsdatascience.com/decision-trees-d07e0f420175" target="_blank" rel="noopener noreferrer">source</a></p>
+
+<p><strong>The splitting process is always done through gini or entropy and therefore always maximises accuracy</strong> - the only way you can influence F1 or AUC on a single tree would be through finding the subtree that optimizes those via postpruning, or to choose the hyperparameters of the ensambling procedure. Therefore yes - standard trees do not handle unbalanced classes, but some optimization around can.<a href="https://stats.stackexchange.com/questions/450634/why-decision-tree-handle-unbalanced-data-well" target="_blank" rel="noopener noreferrer">source</a></p>
+
+<p>We can use Weighted Gini (or Entropy) to take into account the class distribution, or using a mixture of Under and Over sampling of the classes when bagging decision trees.<a href="https://stats.stackexchange.com/questions/450634/why-decision-tree-handle-unbalanced-data-well" target="_blank" rel="noopener noreferrer">source</a></p>
+
+<p>All the following based on <a href="https://www.jeremyjordan.me/imbalanced-data/" target="_blank" rel="noopener noreferrer">source</a></p>
+
+<ul>
+  <li>Class weight
+    <ul>
+      <li>simply provide a weight for each class which places more emphasis on the minority classes such that the end result is a classifier which can learn equally from all classes.</li>
+      <li>in tree based model, decreased entropy to determine how to split the data, can simply <strong>scale the entropy</strong> component of each class by the corresponding weight such that you place more emphasis on the minority classes.</li>
+      <li>In a gradient-based model, place more significance on the losses associated with minority classes.</li>
+    </ul>
+  </li>
+  <li>
+    <p>Oversampling</p>
+
+    <ul>
+      <li>Randomly sample the minority classes and simply duplicate the sampled observations.(but is also artificially reducing the variance of the dataset)</li>
+      <li>
+<strong>Synthetic Minority Over-sampling Technique (SMOTE)</strong> is a technique that generates new observations by interpolating between observations in the original dataset.</li>
+    </ul>
+
+\[x_{new}=x_i+\lambda (x_{zi}−x_i)\]
+
+    <ul>
+      <li>a new (synthetic) observation is generated by interpolating between one of the k-nearest neighbors, xzi.</li>
+      <li>
+<strong>Adaptive Synthetic (ADASYN)</strong> sampling works in a similar manner as SMOTE, however, the number of samples generated for a given xi is proportional to the number of nearby samples which do not belong to the same class as xi. Thus, ADASYN tends to focus solely on outliers when generating new synthetic training examples.</li>
+    </ul>
+  </li>
+  <li>
+    <p>Undersampling</p>
+
+    <ul>
+      <li>Random undersampling
+        <ul>
+          <li>could potentially result in removing key characteristics of the majority class.</li>
+        </ul>
+      </li>
+      <li>Near miss
+        <ul>
+          <li>only the sample the points from the majority class necessary to distinguish between other classes.</li>
+          <li>N farthest samples and N nearest samples</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Remove vague data points
+    <ul>
+      <li>Tomek’s link</li>
+      <li>Edited nearest neighbors</li>
+    </ul>
+  </li>
+</ul>
+
+  </article>
+
+  
+
+</div>
+
+    </div>
+
+    <!-- Footer -->
+
+    
+<footer class="fixed-bottom">
+  <div class="container mt-0">
+    © Copyright 2022 Manqiu  L..
+    Powered by <a href="http://jekyllrb.com/" target="_blank" rel="noopener noreferrer">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio" target="_blank" rel="noopener noreferrer">al-folio</a> theme. Hosted by <a href="https://pages.github.com/" target="_blank" rel="noopener noreferrer">GitHub Pages</a>. Photos from <a href="https://unsplash.com" target="_blank" rel="noopener noreferrer">Unsplash</a>.
+
+    
+    
+  </div>
+</footer>
+
+
+
+  </body>
+
+  <!-- jQuery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+
+  <!-- Bootsrap & MDB scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.4.4/umd/popper.min.js" integrity="sha512-eUQ9hGdLjBjY3F41CScH3UX+4JDSI9zXeroz7hJ+RteoCaY+GP/LDoM8AO+Pt+DRFw3nXqsjh9Zsts8hnYv8/A==" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha512-M5KW3ztuIICmVIhjSqXe01oV2bpe248gOxqmlcYrEzAvws7Pw3z6BK0iGbrwvdrUQUhi3eXgtxp5I8PDo9YfjQ==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js" integrity="sha512-Mug9KHKmroQFMLm93zGrjhibM2z2Obg9l6qFG2qKjXEXkMp/VDkI4uju9m4QKPjWSwQ6O2qzZEnJDEeCw0Blcw==" crossorigin="anonymous"></script>
+
+  
+<!-- Mansory & imagesLoaded -->
+<script defer src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+<script defer src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+<script defer src="/assets/js/mansory.js" type="text/javascript"></script>
+
+
+  
+
+
+<!-- Medium Zoom JS -->
+<script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js" integrity="sha256-EdPgYcPk/IIrw7FYeuJQexva49pVRZNmt3LculEr7zM=" crossorigin="anonymous"></script>
+<script src="/assets/js/zoom.js"></script>
+
+
+<!-- Load Common JS -->
+<script src="/assets/js/common.js"></script>
+
+  
+<!-- MathJax -->
+<script type="text/javascript">
+  window.MathJax = {
+    tex: {
+      tags: 'ams'
+    }
+  };
+</script>
+<script defer type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js"></script>
+<script defer src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+
+
+  
+
+
+
+
+
+</html>

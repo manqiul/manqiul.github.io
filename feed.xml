@@ -1,0 +1,3222 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://manqiul.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://manqiul.github.io/" rel="alternate" type="text/html" hreflang="en" /><updated>2022-07-10T07:51:05+00:00</updated><id>https://manqiul.github.io/feed.xml</id><title type="html">blank</title><subtitle>A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design.
+</subtitle><entry><title type="html">Clustering Algorithms and Evaluations</title><link href="https://manqiul.github.io/blog/2022/clustering/" rel="alternate" type="text/html" title="Clustering Algorithms and Evaluations" /><published>2022-01-20T08:40:16+00:00</published><updated>2022-01-20T08:40:16+00:00</updated><id>https://manqiul.github.io/blog/2022/clustering</id><content type="html" xml:base="https://manqiul.github.io/blog/2022/clustering/"><![CDATA[<h2 id="kmeans">KMeans</h2>
+
+<p><strong>What is KMeans?</strong> <a href="https://towardsdatascience.com/k-means-clustering-algorithm-applications-evaluation-methods-and-drawbacks-aa03e644b48a">source</a></p>
+
+<ul>
+  <li>It assigns data points to a cluster such that <code class="language-plaintext highlighter-rouge">the sum of the squared distance</code> between the data points and the cluster’s centroid (arithmetic mean of all the data points that belong to that cluster) is at the minimum</li>
+</ul>
+
+<figure>
+
+  <picture>
+    
+      <source media="(max-width: 480px)" srcset="/assets/img/cluster3-480.webp" />
+    
+      <source media="(max-width: 800px)" srcset="/assets/img/cluster3-800.webp" />
+    
+      <source media="(max-width: 1400px)" srcset="/assets/img/cluster3-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img class="img-fluid rounded z-depth-1" src="/assets/img/cluster3.png" />
+
+  </picture>
+
+  
+
+</figure>
+
+<ul>
+  <li>
+    <p>K: For this algorithm, we pre-defined that there are K clusters, or to say, K centers.</p>
+  </li>
+  <li>
+    <p>Means: We calculate our centers by calculating means of each cluster.</p>
+  </li>
+</ul>
+
+<p><strong>Process</strong>: <a href="https://www.naftaliharris.com/blog/visualizing-k-means-clustering/">Visualization</a></p>
+
+<ul>
+  <li>Guess some cluster centers</li>
+  <li>Repeat until converged
+    <ul>
+      <li>assign points to the nearest cluster center</li>
+      <li>set the cluster centers to the mean</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>Wait..But how does this work?</strong> <a href="https://towardsdatascience.com/k-means-clustering-algorithm-applications-evaluation-methods-and-drawbacks-aa03e644b48a">source</a></p>
+
+<ul>
+  <li>The approach kmeans follows to solve the problem is called <code class="language-plaintext highlighter-rouge">Expectation-Maximization</code>. The E-step is assigning the data points to the closest cluster. The M-step is computing the centroid of each cluster.</li>
+</ul>
+
+<p>The objective function:</p>
+
+<figure>
+
+  <picture>
+    
+      <source media="(max-width: 480px)" srcset="/assets/img/cluster4-480.webp" />
+    
+      <source media="(max-width: 800px)" srcset="/assets/img/cluster4-800.webp" />
+    
+      <source media="(max-width: 1400px)" srcset="/assets/img/cluster4-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img class="img-fluid rounded z-depth-1" src="/assets/img/cluster4.png" />
+
+  </picture>
+
+  
+
+</figure>
+
+<p>Where $w_{ik}=1$ for data point $x_i$ if it belongs to cluster $k$; otherwise, $w_{ik}=0$. Also, $\mu_k$ is the centroid of $x_i$’s cluster.</p>
+
+<p>We first minimize $J$ w.r.t. $w_{ik}$ and treat $\mu_k$ fixed. Then we minimize $J$ w.r.t. $\mu_k$ and treat $w_{ik}$ fixed.</p>
+
+<ul>
+  <li>When $\mu_k$ is fixed, we assign each point to its closest center to reach minimum.</li>
+</ul>
+
+<figure>
+
+  <picture>
+    
+      <source media="(max-width: 480px)" srcset="/assets/img/cluster5-480.webp" />
+    
+      <source media="(max-width: 800px)" srcset="/assets/img/cluster5-800.webp" />
+    
+      <source media="(max-width: 1400px)" srcset="/assets/img/cluster5-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img class="img-fluid rounded z-depth-1" src="/assets/img/cluster5.png" />
+
+  </picture>
+
+  
+
+</figure>
+
+<ul>
+  <li>When $w_{ik}$ is fixed, we recalculate the $\mu_k$ by calculating each cluster’s mean.</li>
+</ul>
+
+<figure>
+
+  <picture>
+    
+      <source media="(max-width: 480px)" srcset="/assets/img/cluster6-480.webp" />
+    
+      <source media="(max-width: 800px)" srcset="/assets/img/cluster6-800.webp" />
+    
+      <source media="(max-width: 1400px)" srcset="/assets/img/cluster6-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img class="img-fluid rounded z-depth-1" src="/assets/img/cluster6.png" />
+
+  </picture>
+
+  
+
+</figure>
+
+<p><strong>How to choose K?</strong></p>
+
+<p>Elbow Method:</p>
+
+<p>We pick k at the spot where SSE starts to flatten out and forming an elbow.</p>
+
+<figure>
+
+  <picture>
+    
+      <source media="(max-width: 480px)" srcset="/assets/img/cluster7-480.webp" />
+    
+      <source media="(max-width: 800px)" srcset="/assets/img/cluster7-800.webp" />
+    
+      <source media="(max-width: 1400px)" srcset="/assets/img/cluster7-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img class="img-fluid rounded z-depth-1" src="/assets/img/cluster7.png" />
+
+  </picture>
+
+  
+
+</figure>
+
+<p><strong>Limitation</strong>:</p>
+
+<ol>
+  <li>
+    <p>Requires pre-knowledge towards the number of clusters.</p>
+  </li>
+  <li>
+    <p>Is limited to linear cluster boundaries</p>
+  </li>
+  <li>
+    <p>The globally optimal result may not be achieved</p>
+  </li>
+  <li>
+    <p>k-means can be slow for large numbers of samples or large number of features</p>
+  </li>
+</ol>
+
+<h2 id="dbscan-density-based">DBSCAN (Density-Based)</h2>
+
+<p><strong>What is DBSCAN?</strong><a href="https://towardsdatascience.com/how-dbscan-works-and-why-should-i-use-it-443b4a191c80">source</a></p>
+
+<ul>
+  <li>
+    <p>DBSCAN: Density-based spatial clustering of applications with noise.</p>
+  </li>
+  <li>
+    <p>Idea: Clusters are dense regions in the data space, separated by regions of lower object density.</p>
+  </li>
+  <li>
+    <p>Method: Groups together points that are close to each other based on a <code class="language-plaintext highlighter-rouge">distance measurement</code> (usually Euclidean distance) and <code class="language-plaintext highlighter-rouge">a minimum number of points</code>. It also marks as outliers the points that are in low-density regions.</p>
+  </li>
+</ul>
+
+<p><strong>Parameters</strong>:</p>
+
+<ul>
+  <li>
+    <p>eps: specifies how close points should be to each other to be considered a part of a cluster.</p>
+  </li>
+  <li>
+    <p>minPoints: the minimum number of points to form a dense region.</p>
+  </li>
+</ul>
+
+<p><strong>How this works?</strong><a href="https://www.naftaliharris.com/blog/visualizing-dbscan-clustering/">Visualization</a></p>
+
+<ul>
+  <li>
+    <p>Visit every point(every point is visited once only), check if this point satisfies “the number of points in the circle with radius of eps is greater or equal to minPoints”.</p>
+
+    <ul>
+      <li>
+        <p>If Yes: check if this point is already in some cluster. If yes, this point and all the neighbors are marked as in this cluster; If No, then create a new cluster. Then visit all the neighbors and check the condition again.</p>
+      </li>
+      <li>
+        <p>If No: mark this point as outlier.</p>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<figure>
+
+  <picture>
+    
+      <source media="(max-width: 480px)" srcset="/assets/img/cluster9-480.webp" />
+    
+      <source media="(max-width: 800px)" srcset="/assets/img/cluster9-800.webp" />
+    
+      <source media="(max-width: 1400px)" srcset="/assets/img/cluster9-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img class="img-fluid rounded z-depth-1" src="/assets/img/cluster9.png" />
+
+  </picture>
+
+  
+
+</figure>
+
+<p><strong>How to choose parameters?</strong></p>
+
+<ul>
+  <li>
+    <p>MinPts: As a rule of thumb, a minimum minPts can be derived from the number of dimensions D in the data set, as minPts ≥ D + 1</p>
+  </li>
+  <li>
+    <p>The value for $\epsilon$ can then be chosen by using a k-distance graph, plotting the distance to the k = minPts-1 nearest neighbor ordered from the largest to the smallest value. Good values of $\epsilon$ are where this plot shows an “elbow”.</p>
+  </li>
+</ul>
+
+<p><strong>Advantage</strong>:</p>
+
+<ul>
+  <li>
+    <p>No need to specify number of clusters in advance</p>
+  </li>
+  <li>
+    <p>Can handle non-regular shapes of clusters.</p>
+  </li>
+</ul>
+
+<p><strong>Limitation</strong>:</p>
+
+<ul>
+  <li>
+    <p>Sensitive to parameters</p>
+  </li>
+  <li>
+    <p>Cannot handle varying densities</p>
+  </li>
+  <li>
+    <p>Not entirely deterministic: border points that are reachable from more than one cluster can be part of either cluster</p>
+  </li>
+  <li>
+    <p>Choose parameters can be hard.</p>
+  </li>
+  <li>
+    <p>Curse of dimensionality</p>
+  </li>
+</ul>
+
+<figure>
+
+  <picture>
+    
+      <source media="(max-width: 480px)" srcset="/assets/img/cluster8-480.webp" />
+    
+      <source media="(max-width: 800px)" srcset="/assets/img/cluster8-800.webp" />
+    
+      <source media="(max-width: 1400px)" srcset="/assets/img/cluster8-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img class="img-fluid rounded z-depth-1" src="/assets/img/cluster8.png" />
+
+  </picture>
+
+  
+
+</figure>
+
+<h2 id="hierarchical-clustering">Hierarchical Clustering</h2>
+
+<p>Method of cluster analysis which seeks to build a hierarchy of clusters</p>
+
+<figure>
+
+  <picture>
+    
+      <source media="(max-width: 480px)" srcset="/assets/img/cluster11-480.webp" />
+    
+      <source media="(max-width: 800px)" srcset="/assets/img/cluster11-800.webp" />
+    
+      <source media="(max-width: 1400px)" srcset="/assets/img/cluster11-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img class="img-fluid rounded z-depth-1" src="/assets/img/cluster11.png" />
+
+  </picture>
+
+  
+
+</figure>
+
+<p><strong>Type</strong>:</p>
+
+<ul>
+  <li>Agglomerative: This is a “bottom-up” approach: each observation starts in its own cluster, and pairs of clusters are merged as one moves up the hierarchy.</li>
+  <li>Divisive: This is a “top-down” approach: all observations start in one cluster, and splits are performed recursively as one moves down the hierarchy.</li>
+</ul>
+
+<figure>
+
+  <picture>
+    
+      <source media="(max-width: 480px)" srcset="/assets/img/cluster10-480.webp" />
+    
+      <source media="(max-width: 800px)" srcset="/assets/img/cluster10-800.webp" />
+    
+      <source media="(max-width: 1400px)" srcset="/assets/img/cluster10-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img class="img-fluid rounded z-depth-1" src="/assets/img/cluster10.png" />
+
+  </picture>
+
+  
+
+</figure>
+
+<p><strong>How?</strong></p>
+
+<ul>
+  <li>
+    <p>Initially, every point is a seperate cluster</p>
+  </li>
+  <li>
+    <p>Iterate until all points in one cluster:</p>
+    <ul>
+      <li>identify the two clusters that are closest together</li>
+      <li>merge the two most similar clusters</li>
+    </ul>
+  </li>
+</ul>
+
+<figure>
+
+  <picture>
+    
+      <source media="(max-width: 480px)" srcset="/assets/img/cluster14-480.webp" />
+    
+      <source media="(max-width: 800px)" srcset="/assets/img/cluster14-800.webp" />
+    
+      <source media="(max-width: 1400px)" srcset="/assets/img/cluster14-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img class="img-fluid rounded z-depth-1" src="/assets/img/cluster14.png" />
+
+  </picture>
+
+  
+
+</figure>
+
+<p>Distance:</p>
+
+<ul>
+  <li>Usually Euclidean distance</li>
+</ul>
+
+<p>Linkage:</p>
+
+<figure>
+
+  <picture>
+    
+      <source media="(max-width: 480px)" srcset="/assets/img/cluster13-480.webp" />
+    
+      <source media="(max-width: 800px)" srcset="/assets/img/cluster13-800.webp" />
+    
+      <source media="(max-width: 1400px)" srcset="/assets/img/cluster13-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img class="img-fluid rounded z-depth-1" src="/assets/img/cluster13.png" />
+
+  </picture>
+
+  
+
+</figure>
+
+<h2 id="gaussian-mixture-models">Gaussian Mixture Models</h2>
+
+<h2 id="clustering-evaluation">Clustering Evaluation</h2>
+
+<p>Why evaluation? : to compare different algorithms, to choose best parameters. <a href="https://gdcoder.com/silhouette-analysis-vs-elbow-method-vs-davies-bouldin-index-selecting-the-optimal-number-of-clusters-for-kmeans-clustering/">source</a></p>
+
+<h3 id="external-measures-for-clustering-evaluation">External measures for clustering evaluation</h3>
+
+<ul>
+  <li>External: assume that ground truth is known.</li>
+</ul>
+
+<p><strong>Matching-based measures</strong></p>
+
+<ol>
+  <li>Purity: Quantifies the extent that cluster Ci contains points only from one (ground truth) partition</li>
+</ol>
+
+<figure>
+
+  <picture>
+    
+      <source media="(max-width: 480px)" srcset="/assets/img/cluster15-480.webp" />
+    
+      <source media="(max-width: 800px)" srcset="/assets/img/cluster15-800.webp" />
+    
+      <source media="(max-width: 1400px)" srcset="/assets/img/cluster15-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img class="img-fluid rounded z-depth-1" src="/assets/img/cluster15.png" />
+
+  </picture>
+
+  
+
+</figure>
+
+<ul>
+  <li>Drawback of purity: two clusters may be matched to the same partition.</li>
+</ul>
+
+<ol>
+  <li>Maximum Matching: the maximum purity under the one-to-one matching constraint.</li>
+</ol>
+
+<figure>
+
+  <picture>
+    
+      <source media="(max-width: 480px)" srcset="/assets/img/cluster16-480.webp" />
+    
+      <source media="(max-width: 800px)" srcset="/assets/img/cluster16-800.webp" />
+    
+      <source media="(max-width: 1400px)" srcset="/assets/img/cluster16-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img class="img-fluid rounded z-depth-1" src="/assets/img/cluster16.png" />
+
+  </picture>
+
+  
+
+</figure>
+
+<ol>
+  <li>F-Measure</li>
+</ol>
+
+<p>Let’s review</p>
+
+<figure>
+
+  <picture>
+    
+      <source media="(max-width: 480px)" srcset="/assets/img/cluster17-480.webp" />
+    
+      <source media="(max-width: 800px)" srcset="/assets/img/cluster17-800.webp" />
+    
+      <source media="(max-width: 1400px)" srcset="/assets/img/cluster17-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img class="img-fluid rounded z-depth-1" src="/assets/img/cluster17.png" />
+
+  </picture>
+
+  
+
+</figure>
+
+<figure>
+
+  <picture>
+    
+      <source media="(max-width: 480px)" srcset="/assets/img/cluster18-480.webp" />
+    
+      <source media="(max-width: 800px)" srcset="/assets/img/cluster18-800.webp" />
+    
+      <source media="(max-width: 1400px)" srcset="/assets/img/cluster18-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img class="img-fluid rounded z-depth-1" src="/assets/img/cluster18.png" />
+
+  </picture>
+
+  
+
+</figure>
+
+<figure>
+
+  <picture>
+    
+      <source media="(max-width: 480px)" srcset="/assets/img/cluster19-480.webp" />
+    
+      <source media="(max-width: 800px)" srcset="/assets/img/cluster19-800.webp" />
+    
+      <source media="(max-width: 1400px)" srcset="/assets/img/cluster19-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img class="img-fluid rounded z-depth-1" src="/assets/img/cluster19.png" />
+
+  </picture>
+
+  
+
+</figure>
+
+<p><strong>Entropy-based measures</strong></p>
+
+<ol>
+  <li>Conditional Entropy</li>
+</ol>
+
+<figure>
+
+  <picture>
+    
+      <source media="(max-width: 480px)" srcset="/assets/img/cluster20-480.webp" />
+    
+      <source media="(max-width: 800px)" srcset="/assets/img/cluster20-800.webp" />
+    
+      <source media="(max-width: 1400px)" srcset="/assets/img/cluster20-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img class="img-fluid rounded z-depth-1" src="/assets/img/cluster20.png" />
+
+  </picture>
+
+  
+
+</figure>
+
+<figure>
+
+  <picture>
+    
+      <source media="(max-width: 480px)" srcset="/assets/img/cluster21-480.webp" />
+    
+      <source media="(max-width: 800px)" srcset="/assets/img/cluster21-800.webp" />
+    
+      <source media="(max-width: 1400px)" srcset="/assets/img/cluster21-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img class="img-fluid rounded z-depth-1" src="/assets/img/cluster21.png" />
+
+  </picture>
+
+  
+
+</figure>
+
+<ol>
+  <li>Multual Information</li>
+</ol>
+
+<figure>
+
+  <picture>
+    
+      <source media="(max-width: 480px)" srcset="/assets/img/cluster22-480.webp" />
+    
+      <source media="(max-width: 800px)" srcset="/assets/img/cluster22-800.webp" />
+    
+      <source media="(max-width: 1400px)" srcset="/assets/img/cluster22-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img class="img-fluid rounded z-depth-1" src="/assets/img/cluster22.png" />
+
+  </picture>
+
+  
+
+</figure>
+
+<figure>
+
+  <picture>
+    
+      <source media="(max-width: 480px)" srcset="/assets/img/cluster23-480.webp" />
+    
+      <source media="(max-width: 800px)" srcset="/assets/img/cluster23-800.webp" />
+    
+      <source media="(max-width: 1400px)" srcset="/assets/img/cluster23-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img class="img-fluid rounded z-depth-1" src="/assets/img/cluster23.png" />
+
+  </picture>
+
+  
+
+</figure>
+
+<p><strong>Pairwise measures</strong></p>
+
+<h3 id="internal-measures-for-clustering-evaluation">Internal measures for clustering evaluation</h3>
+
+<ul>
+  <li>Internal: No ground truth. Intra-cluster datapoints to be as close as possible to each other and inter-clusters to be as far as possible from each other</li>
+</ul>
+
+<p><strong>Silhouette Coefficient</strong></p>
+
+<figure>
+
+  <picture>
+    
+      <source media="(max-width: 480px)" srcset="/assets/img/cluster24-480.webp" />
+    
+      <source media="(max-width: 800px)" srcset="/assets/img/cluster24-800.webp" />
+    
+      <source media="(max-width: 1400px)" srcset="/assets/img/cluster24-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img class="img-fluid rounded z-depth-1" src="/assets/img/cluster24.png" />
+
+  </picture>
+
+  
+
+</figure>
+
+<p><strong>Davies-Bouldin Index</strong></p>
+
+<figure>
+
+  <picture>
+    
+      <source media="(max-width: 480px)" srcset="/assets/img/cluster25-480.webp" />
+    
+      <source media="(max-width: 800px)" srcset="/assets/img/cluster25-800.webp" />
+    
+      <source media="(max-width: 1400px)" srcset="/assets/img/cluster25-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img class="img-fluid rounded z-depth-1" src="/assets/img/cluster25.png" />
+
+  </picture>
+
+  
+
+</figure>
+
+<p><strong>Graph-based measures</strong></p>
+
+<ol>
+  <li>
+    <p>Normalized Cut</p>
+  </li>
+  <li>
+    <p>Beta-CV Measure</p>
+  </li>
+</ol>]]></content><author><name></name></author><category term="notes" /><category term="machinelearning" /><summary type="html"><![CDATA[KMeans]]></summary></entry><entry><title type="html">Dimensionality Reduction, Kernel PCA and LDA</title><link href="https://manqiul.github.io/blog/2022/pca/" rel="alternate" type="text/html" title="Dimensionality Reduction, Kernel PCA and LDA" /><published>2022-01-11T08:40:16+00:00</published><updated>2022-01-11T08:40:16+00:00</updated><id>https://manqiul.github.io/blog/2022/pca</id><content type="html" xml:base="https://manqiul.github.io/blog/2022/pca/"><![CDATA[<h2 id="kernel-pca">Kernel PCA</h2>
+
+<p>PCA is a linear method. That is it can only be applied to datasets which are linearly separable.Kernel PCA uses a kernel function to project dataset into a higher dimensional feature space, where it is linearly separable <a href="https://www.geeksforgeeks.org/ml-introduction-to-kernel-pca/">source</a></p>
+
+<p><code class="language-plaintext highlighter-rouge">Why High Dimension?</code>: VC (Vapnik-Chervonenkis) theory tells us
+that often mappings which take us into a
+higher dimensional space than the
+dimension of the input space provide us
+with greater classification power <a href="http://www.cs.haifa.ac.il/~rita/uml_course/lectures/KPCA.pdf">source</a></p>
+
+<figure>
+
+  <picture>
+    
+      <source media="(max-width: 480px)" srcset="/assets/img/lda5-480.webp" />
+    
+      <source media="(max-width: 800px)" srcset="/assets/img/lda5-800.webp" />
+    
+      <source media="(max-width: 1400px)" srcset="/assets/img/lda5-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img class="img-fluid rounded z-depth-1" src="/assets/img/lda5.png" />
+
+  </picture>
+
+  
+
+</figure>
+
+<p>But if we simply map the data into higher dimensions, the computation cost would be also high. Why?:</p>
+
+<figure>
+
+  <picture>
+    
+      <source media="(max-width: 480px)" srcset="/assets/img/lda6-480.webp" />
+    
+      <source media="(max-width: 800px)" srcset="/assets/img/lda6-800.webp" />
+    
+      <source media="(max-width: 1400px)" srcset="/assets/img/lda6-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img class="img-fluid rounded z-depth-1" src="/assets/img/lda6.png" />
+
+  </picture>
+
+  
+
+</figure>
+
+<p>Here comes the <code class="language-plaintext highlighter-rouge">Kernel Trick</code>: Get the benefit of high-dimension, but avoid the computation burden brought by high dimensions.</p>
+
+<p>Given any algorithm that can be expressed solely <strong>in terms of dot products</strong>, this trick allows us to construct different nonlinear versions of it. And it will save compuational cost. Why?</p>
+
+<figure>
+
+  <picture>
+    
+      <source media="(max-width: 480px)" srcset="/assets/img/lda7-480.webp" />
+    
+      <source media="(max-width: 800px)" srcset="/assets/img/lda7-800.webp" />
+    
+      <source media="(max-width: 1400px)" srcset="/assets/img/lda7-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img class="img-fluid rounded z-depth-1" src="/assets/img/lda7.png" />
+
+  </picture>
+
+  
+
+</figure>
+
+<p>Popular Kernel funnctions:</p>
+
+<p>Polynomial kernel \(k(x,y)=(x^Ty+1)^d\).</p>
+
+<p>It looks not only at the given features of input samples to determine their similarity, but also combinations of these. With \(n\) original features and \(d\) degrees of polynomial, the polynomial kernel yields \(n^d\) expanded features.</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>RBF kernel, also known as Gaussian kernel $$k(x,y)=e^{-\gamma</td>
+      <td> </td>
+      <td>x-y</td>
+      <td> </td>
+      <td>^2}$$.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>There is an infinite number of dimensions in the feature space because it can be expanded by the Taylor Series. The \(\gamma\) parameter defines how much influence a single training example has. The larger it is, the closer other examples must be to be affected</p>
+
+<p><code class="language-plaintext highlighter-rouge">Math</code>: <a href="http://www.cs.haifa.ac.il/~rita/uml_course/lectures/KPCA.pdf">source</a></p>
+
+<p><code class="language-plaintext highlighter-rouge">Limitation</code>: Overfitting when we mapping features into higher dimensions.</p>
+
+<h2 id="linear-discriminant-analysis">Linear Discriminant Analysis</h2>
+
+<p><code class="language-plaintext highlighter-rouge">Main Idea</code>: With tagged data, we can perform supervised dimensionality reduction. The LDA is to project all the data points on to a lower dimension, which seperates the classes as far as possible. <a href="https://medium.com/analytics-vidhya/linear-discriminant-analysis-explained-in-under-4-minutes-e558e962c877">source1</a>, <a href="https://medium.com/@viveksalunkhe80/linear-discriminant-analysis-2b7bfc409f9b">source2</a></p>
+
+<figure>
+
+  <picture>
+    
+      <source media="(max-width: 480px)" srcset="/assets/img/lda1-480.webp" />
+    
+      <source media="(max-width: 800px)" srcset="/assets/img/lda1-800.webp" />
+    
+      <source media="(max-width: 1400px)" srcset="/assets/img/lda1-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img class="img-fluid rounded z-depth-1" src="/assets/img/lda1.jpeg" />
+
+  </picture>
+
+  
+
+</figure>
+
+<p>We achieve this by maximizing <strong>between-class variance</strong> and minimizing <strong>within-class variance</strong>.</p>
+
+<figure>
+
+  <picture>
+    
+      <source media="(max-width: 480px)" srcset="/assets/img/lda2-480.webp" />
+    
+      <source media="(max-width: 800px)" srcset="/assets/img/lda2-800.webp" />
+    
+      <source media="(max-width: 1400px)" srcset="/assets/img/lda2-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img class="img-fluid rounded z-depth-1" src="/assets/img/lda2.png" />
+
+  </picture>
+
+  
+
+</figure>
+
+<figure>
+
+  <picture>
+    
+      <source media="(max-width: 480px)" srcset="/assets/img/lda3-480.webp" />
+    
+      <source media="(max-width: 800px)" srcset="/assets/img/lda3-800.webp" />
+    
+      <source media="(max-width: 1400px)" srcset="/assets/img/lda3-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img class="img-fluid rounded z-depth-1" src="/assets/img/lda3.png" />
+
+  </picture>
+
+  
+
+</figure>
+
+<p>Fisher defined the separation between these two distributions to be the ratio of the variance between the classes to the variance within the classes.</p>
+
+<p><code class="language-plaintext highlighter-rouge">What we can get from LDA?</code>:</p>
+
+<p>Low-dimensional representations of data points, where each class could be largely seperated.</p>
+
+<figure>
+
+  <picture>
+    
+      <source media="(max-width: 480px)" srcset="/assets/img/lda3-480.webp" />
+    
+      <source media="(max-width: 800px)" srcset="/assets/img/lda3-800.webp" />
+    
+      <source media="(max-width: 1400px)" srcset="/assets/img/lda3-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img class="img-fluid rounded z-depth-1" src="/assets/img/lda3.png" />
+
+  </picture>
+
+  
+
+</figure>
+
+<p><code class="language-plaintext highlighter-rouge">Use Case</code>: Reduce the number of features to a more manageable number before classification</p>
+
+<p><code class="language-plaintext highlighter-rouge">Limitation</code> LDA will fail if discriminatory information is not in the mean but in the variance of the data (That is, the classes share mean value.). We can use <strong>Non-linear Discriminant Analysis</strong>:<a href="https://medium.com/@viveksalunkhe80/linear-discriminant-analysis-2b7bfc409f9b">source</a></p>
+
+<ol>
+  <li>Quadratic Discriminant Analysis (QDA): Each class uses its own estimate of variance (or covariance when there are multiple input variables).</li>
+  <li>Flexible Discriminant Analysis (FDA): Where non-linear combinations of inputs is used such as splines.</li>
+  <li>Regularized Discriminant Analysis (RDA): Introduces regularization into the estimate of the variance (actually covariance), moderating the influence of different variables on LDA.</li>
+</ol>]]></content><author><name></name></author><category term="notes" /><category term="machinelearning" /><summary type="html"><![CDATA[Kernel explanation and LDA]]></summary></entry><entry><title type="html">Tree-based Ensemble Methods Intro and Parameter Tuning</title><link href="https://manqiul.github.io/blog/2022/ensemble/" rel="alternate" type="text/html" title="Tree-based Ensemble Methods Intro and Parameter Tuning" /><published>2022-01-07T08:40:16+00:00</published><updated>2022-01-07T08:40:16+00:00</updated><id>https://manqiul.github.io/blog/2022/ensemble</id><content type="html" xml:base="https://manqiul.github.io/blog/2022/ensemble/"><![CDATA[<h2 id="intro">Intro</h2>
+
+<p><strong>Why Ensemble method?</strong>: Even if each classifier is a weak learner (meaning it does only slightly better than random guessing), the ensemble can still be a strong learner. Here are three types <a href="https://blog.paperspace.com/adaboost-optimizer/">source</a>:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Bagging</code></li>
+  <li><code class="language-plaintext highlighter-rouge">Boosting</code></li>
+  <li><code class="language-plaintext highlighter-rouge">Stacking</code></li>
+</ul>
+
+<p><strong>Where to find a diverse set of classifiers?</strong></p>
+
+<ul>
+  <li>Use different training algorithm</li>
+  <li>Use the same training algorithm for every predictor, but to train them on different random subsets of the training set.</li>
+</ul>
+
+<p><strong>How to aggregate?</strong>: Usually, we use Vote(take the statistical mode).</p>
+
+<h2 id="bagging-and-pasting"><strong>Bagging and Pasting</strong></h2>
+
+<p>The aggregation function of Bagging and Pasting is typically the statistical mode. The difference is:</p>
+
+<ul>
+  <li>Bagging: Sample with replacement</li>
+  <li>Pasting: Sample without replacement</li>
+</ul>
+
+<h3 id="pasting"><code class="language-plaintext highlighter-rouge">Pasting</code>：</h3>
+
+<p>Similar to split the dataset into several subsets.</p>
+
+<h3 id="bagging-bootstrap-aggregating"><code class="language-plaintext highlighter-rouge">Bagging</code>: <a href="https://en.wikipedia.org/wiki/Bootstrap_aggregating">Bootstrap aggregating</a></h3>
+
+<p>Given a standard training set \(D\) of size \(n\), bagging generates \(m\) new training sets \(D_{i}\), each of size \(n^′\), by sampling from D uniformly and with replacement.</p>
+
+<p>By sampling with replacement, some observations may be repeated in each \(D_{i}\). If \(n^′=n\), then for large \(n\) the set \(D_{i}\) is expected to have the fraction \((1 - 1/e)≈63.2%\) of the unique examples of D, the rest being duplicates.</p>
+
+<ul>
+  <li><a href="https://stats.stackexchange.com/questions/88980/why-on-average-does-each-bootstrap-sample-contain-roughly-two-thirds-of-observat">Note</a>: Each draw, the probability of not choosing that item is \((1−\frac{1}{n})\), if we draw \(n\) times, the probability of this item not being chosen would be \((1−\frac{1}{n})^n\). When \(n -&gt; +\infty\)</li>
+</ul>
+
+\[lim_{n-&gt;\infty}(1−\frac{1}{n})^n = e^{lim_{n-&gt;\infty}nln(1−\frac{1}{n})}\\
+=e^{lim_{n-&gt;\infty}\frac{ln(1−\frac{1}{n})}{1/n}}\\
+=e^{lim_{n-&gt;\infty}\frac{dln(1−\frac{1}{n})/dn}{d(1/n)/dn}}\\
+=e^{-1} \approx 0.368\]
+
+<p>Then, \(m\) models are fitted using the above \(m\) bootstrap samples and combined by averaging the output (for regression) or voting (for classification).</p>
+
+<p>We usually use Bagging, because:</p>
+
+<ol>
+  <li>Bagging doesn’t require that big dataset</li>
+  <li>Bagging is less affected by the method of randomness (the pasting is similar to divide dataset into several subsets. The way we split the dataset matters.)</li>
+</ol>
+
+<p>Note: Bootstrapping introduces a bit more diversity in the subsets that each predictor is trained on, so <strong>bagging ends up with a slightly higher bias than pasting</strong>, but this also means that <strong>predictors end up being less correlated so the ensemble’s variance is reduced</strong>.</p>
+
+<p>The net result is that the ensemble has <strong>a similar bias but a lower variance</strong> than a single predictor trained on the original training set.</p>
+
+<h3 id="bagging---random-forest">Bagging -&gt; Random Forest</h3>
+
+<p>When training <strong>Random Forest</strong>, at each node only <strong>a random subset of the features</strong> is considered for splitting.</p>
+
+<p>There are two parts of parameters need to be tuned. One is about trees characteristics; the other is about bagging process.
+<a href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html">Documentation</a></p>
+
+<p><strong>Tree-related</strong></p>
+
+<p>Random forest in sklearn is using CART decision tree, that is, for each node, we use Gini Index to split data. <a href="https://medium.com/@abedinia.aydin/survey-of-the-decision-trees-algorithms-cart-c4-5-id3-97df842831cd">source</a></p>
+
+<p>For decision trees, parameters are:</p>
+
+<ul>
+  <li>max_depth int, default=None
+    <ul>
+      <li>The maximum depth of the tree. If None, then nodes are expanded until all leaves are pure or until all leaves contain less than min_samples_split samples. The min_samples_split is by default 2. So <strong>if we don’t set max_depth, the tree would split until there is only one sample data in the leaf.</strong></li>
+    </ul>
+  </li>
+  <li>min_samples_split int or float, default=2
+    <ul>
+      <li>The minimum number of samples required to split an internal node:</li>
+    </ul>
+  </li>
+  <li>min_samples_leaf int or float, default=1
+    <ul>
+      <li>The minimum number of samples required to be at a leaf node.</li>
+    </ul>
+  </li>
+  <li>max_leaf_nodes int, default=None
+    <ul>
+      <li>Grow trees with max_leaf_nodes in best-first fashion. Best nodes are defined as relative reduction in impurity. If None then unlimited number of leaf nodes.</li>
+    </ul>
+  </li>
+  <li>min_impurity_decrease float, default=0.0
+    <ul>
+      <li>A node will be split if this split induces a decrease of the impurity greater than or equal to this value.</li>
+    </ul>
+  </li>
+  <li>max_features{“auto”, “sqrt”, “log2”}, int or float, default=”auto”
+    <ul>
+      <li>The number of features to consider when looking for the best split. For classification a good default is: <strong>m = sqrt(p)</strong></li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>Bagging-related</strong></p>
+
+<ul>
+  <li>n_estimators int, default=100
+    <ul>
+      <li>The number of trees in the forest.</li>
+    </ul>
+  </li>
+  <li>criterion {“gini”, “entropy”}, default=”gini”</li>
+  <li>oob_score bool, default=False
+    <ul>
+      <li>Whether to use out-of-bag samples to estimate the generalization score. Only available if bootstrap=True.</li>
+    </ul>
+  </li>
+  <li>Bootstrap bool, default=True
+    <ul>
+      <li>Whether bootstrap samples are used when building trees. If False, the whole dataset is used to build each tree.</li>
+    </ul>
+  </li>
+  <li>max_samples int or float, default=None
+    <ul>
+      <li>If bootstrap is True, the number of samples to draw from X to train each base estimator</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="boosting"><strong>Boosting</strong></h2>
+
+<p>Boosting is different from bagging in that the weak learners (in tree models, it would be CART trees) are <strong>sequentially built and correlated with each other</strong>. For Bagging, weak learners are independently built.</p>
+
+<p><code class="language-plaintext highlighter-rouge">Adaboost</code></p>
+
+<p>Adaboost was the first boosting algorithm, with a basic idea of sequentially building weak learners based on the former learner, assigning weights to those misclassified sample.</p>
+
+<p>Once all predictors are trained, all predictors have different weights depending on their overall accuracy on the weighted training set, and we get the weighted sum of all predictors.</p>
+
+<figure>
+
+  <picture>
+    
+      <source media="(max-width: 480px)" srcset="/assets/img/ensemble1-480.webp" />
+    
+      <source media="(max-width: 800px)" srcset="/assets/img/ensemble1-800.webp" />
+    
+      <source media="(max-width: 1400px)" srcset="/assets/img/ensemble1-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img class="img-fluid rounded z-depth-1" src="/assets/img/ensemble1.png" />
+
+  </picture>
+
+  
+
+</figure>
+
+<p>The weak learners in AdaBoost are decision trees with a single split, called decision stumps for their shortness.</p>
+
+<div class="row">
+    <div class="col-sm mt-3 mt-md-0">
+        
+
+<figure>
+
+  <picture>
+    
+      <source media="(max-width: 480px)" srcset="/assets/img/ensemble6-480.webp" />
+    
+      <source media="(max-width: 800px)" srcset="/assets/img/ensemble6-800.webp" />
+    
+      <source media="(max-width: 1400px)" srcset="/assets/img/ensemble6-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img class="img-fluid rounded z-depth-1" src="/assets/img/ensemble6.png" />
+
+  </picture>
+
+  
+
+</figure>
+
+    </div>
+</div>
+
+<p><code class="language-plaintext highlighter-rouge">Gradient Boosting</code></p>
+
+<p>GB was brought up as a generalized version of Adaboost. It is to <strong>minimize the loss of the model by adding weak learners using a gradient descent like procedure</strong>.</p>
+
+<p>Process:</p>
+
+<ul>
+  <li>The GB is to fit the new predictor to the residual errors made by the previous predictor</li>
+  <li>After all the predictors were built, simply add up the predictions of all the trees.</li>
+</ul>
+
+<p>Gradient boosting involves three elements:</p>
+
+<ol>
+  <li>A loss function to be optimized.</li>
+  <li>A weak learner to make predictions.</li>
+  <li>An additive model to add weak learners to minimize the loss function.</li>
+</ol>
+
+<div class="row">
+    <div class="col-sm mt-3 mt-md-0">
+        
+
+<figure>
+
+  <picture>
+    
+      <source media="(max-width: 480px)" srcset="/assets/img/ensemble5-480.webp" />
+    
+      <source media="(max-width: 800px)" srcset="/assets/img/ensemble5-800.webp" />
+    
+      <source media="(max-width: 1400px)" srcset="/assets/img/ensemble5-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img class="img-fluid rounded z-depth-1" src="/assets/img/ensemble5.png" />
+
+  </picture>
+
+  
+
+</figure>
+
+    </div>
+</div>
+
+<figure>
+
+  <picture>
+    
+      <source media="(max-width: 480px)" srcset="/assets/img/ensemble7-480.webp" />
+    
+      <source media="(max-width: 800px)" srcset="/assets/img/ensemble7-800.webp" />
+    
+      <source media="(max-width: 1400px)" srcset="/assets/img/ensemble7-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img class="img-fluid rounded z-depth-1" src="/assets/img/ensemble7.png" />
+
+  </picture>
+
+  
+
+</figure>
+
+<p><code class="language-plaintext highlighter-rouge">XGBoost</code><a href="https://www.kdnuggets.com/2018/08/unveiling-mathematics-behind-xgboost.html">math</a>, <a href="https://arxiv.org/pdf/1603.02754.pdf">original paper</a></p>
+
+<p>Important Advantages<a href="https://www.analyticsvidhya.com/blog/2016/03/complete-guide-parameter-tuning-xgboost-with-codes-python/">source</a>:</p>
+
+<ul>
+  <li>Regularization:
+    <ul>
+      <li>Standard GBM implementation has no regularization like XGBoost, therefore it also helps to reduce overfitting.</li>
+      <li>Penalizes building complex tree with several leaf nodes</li>
+    </ul>
+  </li>
+  <li>Parallel Processing:
+    <ul>
+      <li><a href="http://zhanpengfang.github.io/418home.html">know more here</a></li>
+    </ul>
+  </li>
+  <li>Second derivative:
+    <ul>
+      <li>Gradient Boosting follows negative gradients to optimize the loss function, XGBoost uses Taylor expansion to calculate the value of the loss function for different base learners.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">LightGBM</code> <a href="https://medium.com/riskified-technology/xgboost-lightgbm-or-catboost-which-boosting-algorithm-should-i-use-e7fda7bb36bc">source</a></p>
+
+<p>Advanced version of XGBoost, has advantage in memory saving.</p>
+
+<p>LightGBM uses <strong>leaf-wise (best-first) tree growth</strong>. It chooses to grow the leaf that minimizes the loss, allowing a growth of an imbalanced tree. Because it doesn’t grow level-wise, but leaf-wise, <strong>overfitting can happen when data is small</strong>. In these cases, it is important to control the tree depth.</p>
+
+<p>XGboost splits up to the specified max_depth hyperparameter and then starts <strong>pruning the tree backwards and removes splits beyond which there is no positive gain</strong>. It uses this approach since sometimes a split of no loss reduction may be followed by a split with loss reduction. XGBoost can also perform leaf-wise tree growth (as LightGBM).</p>
+
+<figure>
+
+  <picture>
+    
+      <source media="(max-width: 480px)" srcset="/assets/img/ensemble2-480.webp" />
+    
+      <source media="(max-width: 800px)" srcset="/assets/img/ensemble2-800.webp" />
+    
+      <source media="(max-width: 1400px)" srcset="/assets/img/ensemble2-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img class="img-fluid rounded z-depth-1" src="/assets/img/ensemble2.png" />
+
+  </picture>
+
+  
+
+</figure>
+
+<h2 id="stacking">Stacking</h2>
+
+<p>Instead of using trivial functions (such as hard voting) to aggregate the predictions of all predictors in an ensemble, Stacking trains a model to perform this aggregation. The final predictor is called blender.</p>
+
+<p>Step 1: the training set is split in two subsets. The first subset is used to train the predictors in the first layer</p>
+
+<p>Step 2: the first layer predictors are used to make predictions on the second (held-out) set. We can create a new training set using these predicted values as input features, and keeping the target values.</p>
+
+<p>Step 3: The blender is trained on this new training set, so it learns to predict the target value given the first layer’s predictions.</p>
+
+<h2 id="feature-importance">Feature Importance</h2>
+
+<p>Scikit-Learn measures a feature’s importance by looking at how much the tree nodes that use that feature reduce impurity on average (across all trees in the forest).</p>
+
+<p><code class="language-plaintext highlighter-rouge">Impurity-based</code>:</p>
+
+<ul>
+  <li>
+    <p>impurity-based importances are biased towards high cardinality features;</p>
+  </li>
+  <li>
+    <p>impurity-based importances are computed on training set statistics and therefore do not reflect the ability of feature to be useful to make predictions that generalize to the test set (when the model has enough capacity).</p>
+  </li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">Permutation-based</code>:</p>
+
+<ul>
+  <li>
+    <p>overcomes limitations of the impurity-based feature importance: they do not have a bias toward high-cardinality features and can be computed on a left-out test set.</p>
+  </li>
+  <li>
+    <p>The computation for full permutation importance is more costly.</p>
+  </li>
+</ul>]]></content><author><name></name></author><category term="notes" /><category term="machinelearning" /><summary type="html"><![CDATA[Intro]]></summary></entry><entry><title type="html">Decision Tree Model - Advanced Review</title><link href="https://manqiul.github.io/blog/2022/tree/" rel="alternate" type="text/html" title="Decision Tree Model - Advanced Review" /><published>2022-01-01T08:40:16+00:00</published><updated>2022-01-01T08:40:16+00:00</updated><id>https://manqiul.github.io/blog/2022/tree</id><content type="html" xml:base="https://manqiul.github.io/blog/2022/tree/"><![CDATA[<h2 id="decision-tree">Decision Tree</h2>
+
+<h3 id="key-takeaways">Key Takeaways</h3>
+
+<p><a href="https://towardsdatascience.com/decision-trees-6-important-things-to-always-remember-85636858da51">source</a></p>
+
+<ul>
+  <li>No need to scale or center the data.</li>
+  <li>Very likely to overfit the training data(not generalizing well).</li>
+  <li>Very few assumptions about the training data( the data is non-linear). Non-parametric model: no assumptions about the shape of data.</li>
+  <li>Effective learning with small training data, however very sensitive to small variations in the training data.</li>
+  <li>Decision Boundary is irregular. Usually orthogonal decision boundaries.</li>
+  <li>Probabilities: can return the class corresponding probability in the final tree node.</li>
+  <li>
+    <p>Missing value:</p>
+
+    <ul>
+      <li>ignoring the missing values</li>
+      <li>treating the missing values as another category (in case of a nominal feature)</li>
+      <li>all goes to the node which already has the biggest number of instances (CART, is not the primary rule)</li>
+      <li>distribute to all children, but with diminished weights, proportional with the number of instances from each child node (C45 and others)</li>
+    </ul>
+  </li>
+  <li><strong>Complexity</strong>, <a href="https://towardsdatascience.com/almost-everything-you-need-to-know-about-decision-trees-with-code-dc026172a284">source</a>: Training complexity: decision trees are generally approximately balanced, the number of node would be approximately \(O(log_2(m))\). Each node, we need to go through all the features and all the samples to calculate the split and impurity, which gives us complexity of \(O(nmlog_2(m))+O(nm) =&gt;O(nmlog_2(m))\). (nmlogm is for sorting by each feature.O(nm) is going through each data point for each feature)(m is the number of samples,n is number of features.). Prediction complexity is just O(log2(m))</li>
+</ul>
+
+<h3 id="training-algorithm">Training Algorithm</h3>
+
+<p><a href="https://quantdare.com/decision-trees-gini-vs-entropy/">source</a></p>
+
+<p><strong>Gini Impurity</strong></p>
+
+\[GiniIndex = 1-\Sigma p_i^2\]
+
+<p>The i stands for class i. Gets its maximum value when the probability of the two classes is the same. The minimum value of Gini Index is 0, where the data is pure and only has one class.</p>
+
+<p><strong>Entropy</strong></p>
+
+\[Entropy=–\Sigma p_i⋅log_2⋅p_i\]
+
+<p>Gets its maximum value when the probability of the two classes is the same. Data is pure when the entropy has its minimum value, which is 0.</p>
+
+<p><strong>Gini vs. Entropy</strong></p>
+
+<ul>
+  <li>Gini Index has values inside the interval [0, 0.5] whereas the interval of the Entropy is [0, 1].</li>
+  <li>Computationally, entropy is more complex since it makes use of logarithms and consequently, the calculation of the Gini Index will be faster.</li>
+  <li>Most of the time it does not make a big difference. However, when they differ, Gini impurity tends to isolate the most frequent class in its own branch of the tree, while entropy tends to produce slightly more balanced trees.</li>
+</ul>
+
+<figure>
+
+  <picture>
+    
+      <source media="(max-width: 480px)" srcset="/assets/img/tree/tree2-480.webp" />
+    
+      <source media="(max-width: 800px)" srcset="/assets/img/tree/tree2-800.webp" />
+    
+      <source media="(max-width: 1400px)" srcset="/assets/img/tree/tree2-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img class="img-fluid rounded z-depth-1" src="/assets/img/tree/tree2.png" />
+
+  </picture>
+
+  
+
+</figure>
+
+<p><strong>Calculation</strong></p>
+
+<p>Gini gain = \(Gini(Parent)\) - Weighted average of \(Gini(Child)\)</p>
+
+<p>For each node, we choose the feature and threshold that have the most information gain.</p>
+
+<h3 id="regularization">Regularization</h3>
+
+<p><strong>Hyperparameters</strong>
+Increasing min hyperparameters or reducing max hyperparameters will regularize the model.</p>
+
+<ul>
+  <li>min_samples_split (the minimum number of samples a node must have before it can be split)</li>
+  <li>min_samples_leaf (the minimum number of samples a leaf node must have)</li>
+  <li>min_weight_fraction_leaf (same as min_samples_leaf but expressed as a fraction of the total number of weighted instances)</li>
+  <li>max_leaf_nodes (maximum number of leaf nodes)</li>
+  <li>max_features (maximum number of features that are evaluated for splitting at each node)</li>
+</ul>
+
+<p><strong>Pruning</strong></p>
+
+<p><a href="https://en.wikipedia.org/wiki/Decision_tree_pruning">source</a></p>
+
+<p><strong>Pruning processes can be divided into two types (pre- and post-pruning).</strong></p>
+
+<p><strong>Pre-pruning</strong> procedures prevent a complete induction of the training set by replacing a stop () criterion in the induction algorithm (e.g. max. Tree depth or information gain (Attr)&gt; minGain). Pre-pruning methods are considered to be more efficient because they do not induce an entire set, but rather trees remain small from the start. <strong>Prepruning methods share a common problem, the horizon effect. This is to be understood as the undesired premature termination of the induction by the stop () criterion.</strong></p>
+
+<p><strong>Post-pruning</strong> (or just pruning) is the most common way of simplifying trees. Here, nodes and subtrees are replaced with leaves to reduce complexity. Pruning can not only significantly <strong>reduce the size but also improve the classification accuracy of unseen objects</strong>. It may be the case that the accuracy of the assignment on the train set deteriorates, but the accuracy of the classification properties of the tree increases overall.</p>
+
+<p>The procedures are differentiated on the basis of their approach in the tree (top-down or bottom-up).</p>
+
+<p><strong>Bottom-up pruning</strong>
+These procedures start at the last node in the tree (the lowest point). Following recursively upwards, they determine the relevance of each individual node. If the relevance for the classification is not given, the node is dropped or replaced by a leaf. The advantage is that no relevant sub-trees can be lost with this method. These methods include <strong>Reduced Error Pruning (REP), Minimum Cost Complexity Pruning (MCCP), or Minimum Error Pruning (MEP)</strong>.</p>
+
+<p><strong>Top-down pruning</strong>
+In contrast to the bottom-up method, this method starts at the root of the tree. Following the structure below, a relevance check is carried out which decides whether a node is relevant for the classification of all n items or not. By pruning the tree at an inner node, it can happen that an entire sub-tree (regardless of its relevance) is dropped. One of these representatives is <strong>pessimistic error pruning (PEP)</strong>, which brings quite good results with unseen items.</p>
+
+<p>A node whose children are all leaf nodes is considered unnecessary if the purity improvement it provides is not statistically significant.</p>
+
+<ol>
+  <li>Reduced error pruning (source:tamu.edu, cs663)</li>
+</ol>
+
+<ul>
+  <li>Classify examples in validation set
+    <ul>
+      <li>For each node:
+        <ul>
+          <li>Sum the errors over entire subtree</li>
+          <li>Calculate error on same example if converted to a leaf with majority class label</li>
+          <li>Prune node with highest reduction in error</li>
+          <li>Repeat until error no longer reduced</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<ol>
+  <li>Cost complexity pruning</li>
+</ol>
+
+<p><a href="http://mlwiki.org/index.php/Cost-Complexity_Pruning">source1</a>
+<a href="https://www.hds.utc.fr/~tdenoeux/dokuwiki/_media/en/trees.pdf">source2</a></p>
+
+<ol>
+  <li>Significant testing</li>
+</ol>
+
+<p>The \(\chi^2\) test: estimate the probability that the improvement is purely the result of chance (which is called the null hypothesis)</p>
+
+<h3 id="regression">Regression</h3>
+
+<p><a href="https://www.youtube.com/watch?v=g9c66TUylZ4">source</a></p>
+
+<p>The main difference is that regression tree split the training set in a way that minimizes the MSE. The predicted value for each region is always the <strong>average target value</strong> of the instances in that region.</p>
+
+\[J(k, t_k) = \frac{m_{left}}{m} MSE_{left} + \frac{m_{right}}{m} MSE_{right}\]
+
+<p>where:</p>
+
+\[MSE_{node}=\Sigma(\hat y_{node}-y^{i})^2\\
+\hat y_{node}=\frac{1}{m_{node}}\Sigma y^{i}\]
+
+<h3 id="limitation-and-methods">Limitation and Methods</h3>
+
+<p><strong>1. Overfitting</strong></p>
+
+<p><strong>2. Orthogonal decision boundaries</strong></p>
+
+<p>cannot generalized well when the ground truth of decision boundary has slope. One way is to use PCA first.</p>
+
+<figure>
+
+  <picture>
+    
+      <source media="(max-width: 480px)" srcset="/assets/img/tree/tree3-480.webp" />
+    
+      <source media="(max-width: 800px)" srcset="/assets/img/tree/tree3-800.webp" />
+    
+      <source media="(max-width: 1400px)" srcset="/assets/img/tree/tree3-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img class="img-fluid rounded z-depth-1" src="/assets/img/tree/tree3.png" />
+
+  </picture>
+
+  
+
+</figure>
+
+<p><strong>3. Sparse features</strong></p>
+
+<p>Not designed to work with very sparse features. When data is sparse, decision trees overfit. Can use PCA.</p>
+
+<p><strong>4. Unstable</strong> <a href="https://towardsdatascience.com/decision-trees-d07e0f420175">source</a></p>
+
+<p>A small change in the dataset can make the tree structure unstable which can cause variance.</p>
+
+<p><strong>5. Imbalanced data</strong></p>
+
+<p>Reading: <a href="https://statistics.berkeley.edu/sites/default/files/tech-reports/666.pdf">Using Random Forest to Learn Imbalanced Data</a></p>
+
+<p>Decision tree learners create underfit trees if some classes are imbalanced. It is therefore recommended to balance the data set prior to fitting with the decision tree. <a href="https://towardsdatascience.com/decision-trees-d07e0f420175">source</a></p>
+
+<p><strong>The splitting process is always done through gini or entropy and therefore always maximises accuracy</strong> - the only way you can influence F1 or AUC on a single tree would be through finding the subtree that optimizes those via postpruning, or to choose the hyperparameters of the ensambling procedure. Therefore yes - standard trees do not handle unbalanced classes, but some optimization around can.<a href="https://stats.stackexchange.com/questions/450634/why-decision-tree-handle-unbalanced-data-well">source</a></p>
+
+<p>We can use Weighted Gini (or Entropy) to take into account the class distribution, or using a mixture of Under and Over sampling of the classes when bagging decision trees.<a href="https://stats.stackexchange.com/questions/450634/why-decision-tree-handle-unbalanced-data-well">source</a></p>
+
+<p>All the following based on <a href="https://www.jeremyjordan.me/imbalanced-data/">source</a></p>
+
+<ul>
+  <li>Class weight
+    <ul>
+      <li>simply provide a weight for each class which places more emphasis on the minority classes such that the end result is a classifier which can learn equally from all classes.</li>
+      <li>in tree based model, decreased entropy to determine how to split the data, can simply <strong>scale the entropy</strong> component of each class by the corresponding weight such that you place more emphasis on the minority classes.</li>
+      <li>In a gradient-based model, place more significance on the losses associated with minority classes.</li>
+    </ul>
+  </li>
+  <li>
+    <p>Oversampling</p>
+
+    <ul>
+      <li>Randomly sample the minority classes and simply duplicate the sampled observations.(but is also artificially reducing the variance of the dataset)</li>
+      <li><strong>Synthetic Minority Over-sampling Technique (SMOTE)</strong> is a technique that generates new observations by interpolating between observations in the original dataset.</li>
+    </ul>
+
+\[x_{new}=x_i+\lambda (x_{zi}−x_i)\]
+
+    <ul>
+      <li>a new (synthetic) observation is generated by interpolating between one of the k-nearest neighbors, xzi.</li>
+      <li><strong>Adaptive Synthetic (ADASYN)</strong> sampling works in a similar manner as SMOTE, however, the number of samples generated for a given xi is proportional to the number of nearby samples which do not belong to the same class as xi. Thus, ADASYN tends to focus solely on outliers when generating new synthetic training examples.</li>
+    </ul>
+  </li>
+  <li>
+    <p>Undersampling</p>
+
+    <ul>
+      <li>Random undersampling
+        <ul>
+          <li>could potentially result in removing key characteristics of the majority class.</li>
+        </ul>
+      </li>
+      <li>Near miss
+        <ul>
+          <li>only the sample the points from the majority class necessary to distinguish between other classes.</li>
+          <li>N farthest samples and N nearest samples</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Remove vague data points
+    <ul>
+      <li>Tomek’s link</li>
+      <li>Edited nearest neighbors</li>
+    </ul>
+  </li>
+</ul>]]></content><author><name></name></author><category term="notes" /><category term="machinelearning" /><summary type="html"><![CDATA[Training, Complexity, Pruning, Regression Tree and limitation.]]></summary></entry><entry><title type="html">Support Vector Machine Math and Optimization</title><link href="https://manqiul.github.io/blog/2021/svm/" rel="alternate" type="text/html" title="Support Vector Machine Math and Optimization" /><published>2021-12-29T08:40:16+00:00</published><updated>2021-12-29T08:40:16+00:00</updated><id>https://manqiul.github.io/blog/2021/svm</id><content type="html" xml:base="https://manqiul.github.io/blog/2021/svm/"><![CDATA[<h2 id="math-basics">Math Basics</h2>
+
+<p><a href="https://www.svm-tutorial.com/2016/09/duality-lagrange-multipliers/">source</a></p>
+
+<h3 id="duality">Duality</h3>
+
+<blockquote>
+
+Optimization problems may be viewed from either of two perspectives, the primal problem or the dual problem. The solution to the dual problem provides a lower bound to the solution of the primal (minimization) problem
+
+In general the optimal values of the primal and dual problems need not be equal. Their difference is called the duality gap
+
+</blockquote>
+
+<h3 id="contour-lines">Contour lines</h3>
+
+<ul>
+  <li>For each point on a line, the function returns the same value</li>
+  <li>The darker the area is, the smallest the value of the function is</li>
+</ul>
+
+<figure>
+
+  <picture>
+    
+      <source media="(max-width: 480px)" srcset="/assets/img/svm/svm10-480.webp" />
+    
+      <source media="(max-width: 800px)" srcset="/assets/img/svm/svm10-800.webp" />
+    
+      <source media="(max-width: 1400px)" srcset="/assets/img/svm/svm10-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img class="img-fluid rounded z-depth-1" src="/assets/img/svm/svm10.png" />
+
+  </picture>
+
+  
+
+</figure>
+
+<h3 id="hyperplane">Hyperplane</h3>
+
+<blockquote>
+
+In geometry, a hyperplane is a subspace whose dimension is one less than that of its ambient space. For example, if a space is 3-dimensional then its hyperplanes are the 2-dimensional planes, while if the space is 2-dimensional, its hyperplanes are the 1-dimensional lines.
+
+</blockquote>
+
+<h3 id="lagrange-multipliers">Lagrange multipliers</h3>
+
+<ul>
+  <li>Only works with equality constraints.</li>
+  <li>The only one point where two vectors point in the same direction: it is the minimum of the objective function, under the constraint.</li>
+</ul>
+
+<figure>
+
+  <picture>
+    
+      <source media="(max-width: 480px)" srcset="/assets/img/svm/svm11-480.webp" />
+    
+      <source media="(max-width: 800px)" srcset="/assets/img/svm/svm11-800.webp" />
+    
+      <source media="(max-width: 1400px)" srcset="/assets/img/svm/svm11-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img class="img-fluid rounded z-depth-1" src="/assets/img/svm/svm11.png" />
+
+  </picture>
+
+  
+
+</figure>
+
+<ul>
+  <li>Lagrange told us that to find the minimum of a constrained function, we need to look or points were \(\triangledown f(x,y)=\lambda \triangledown g(x,y)\).</li>
+  <li>So we get \(\triangledown L(x,y,\lambda) = \triangledown f(x,y)-\lambda \triangledown g(x,y)\). The partial derivative of \(x,y,\lambda\) would all be zero.</li>
+</ul>
+
+<h3 id="quadratic-programming">Quadratic Programming</h3>
+
+<p><a href="https://www.youtube.com/watch?v=GZb9647X8sg">Remaining</a></p>
+
+<h2 id="perceptron-classifier">Perceptron Classifier</h2>
+
+<p><a href="https://www.youtube.com/watch?v=4Gac5I64LM4">source</a></p>
+
+<p>We’ll label the points into two labels {-1,1}, which gives us:</p>
+
+<p>correct: \(y_{actual}*y_{predicted}&gt;0\)</p>
+
+<p>wrong: \(y_{actual}*y_{predicted}&lt;0\)</p>
+
+<figure>
+
+  <picture>
+    
+      <source media="(max-width: 480px)" srcset="/assets/img/svm/svm2-480.webp" />
+    
+      <source media="(max-width: 800px)" srcset="/assets/img/svm/svm2-800.webp" />
+    
+      <source media="(max-width: 1400px)" srcset="/assets/img/svm/svm2-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img class="img-fluid rounded z-depth-1" src="/assets/img/svm/svm2.png" />
+
+  </picture>
+
+  
+
+</figure>
+
+<p>For two dimension:</p>
+
+\[\theta = (\theta_0,\theta_1,\theta_2)^T\\
+x = (1,x_1,x_2)^T\\\]
+
+<p>The decision boundary line we got would be:</p>
+
+\[\begin{aligned}
+\theta^T*x=0\\
+\theta_0+\theta_1*x_1+\theta_2*x_2=0
+\end{aligned}\]
+
+<p>We’ll use iteration to find the line, for each missclassified point:</p>
+
+\[\theta_{updated}=\theta_{original}+\alpha*y_{actual}*x\]
+
+<h2 id="linearly-seperable-svm">Linearly Seperable SVM</h2>
+
+<ul>
+  <li>
+    <p>Two classes are linearly separable, SVM is to find the line that seperates the classes as far away as possible.</p>
+  </li>
+  <li>
+    <p><strong>Support Vector</strong>: Any instance located on the “street”, including its border. The decision boundary is entirely determined by the support vectors.</p>
+  </li>
+  <li>
+    <p>SVM can output the confidence score by calculating the point’s distance from the decision boundary, byt there is no probability can be returned.</p>
+  </li>
+  <li>
+    <p>SVM is sensitive to feature scales. Or it will neglect the smaller feature.</p>
+  </li>
+</ul>
+
+<figure>
+
+  <picture>
+    
+      <source media="(max-width: 480px)" srcset="/assets/img/svm/svm1-480.webp" />
+    
+      <source media="(max-width: 800px)" srcset="/assets/img/svm/svm1-800.webp" />
+    
+      <source media="(max-width: 1400px)" srcset="/assets/img/svm/svm1-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img class="img-fluid rounded z-depth-1" src="/assets/img/svm/svm1.png" />
+
+  </picture>
+
+  
+
+</figure>
+
+<ul>
+  <li>Hard margin classification: cannot deal with outliers. Thus we’ll use a more flexible model.</li>
+</ul>
+
+<h3 id="math">Math</h3>
+
+<table>
+  <tbody>
+    <tr>
+      <td><strong>Step1</strong>: With normalization $$</td>
+      <td>x_i \theta+b</td>
+      <td>= 1 \(, so the distance be\) \frac{1}{</td>
+      <td> </td>
+      <td>\theta</td>
+      <td> </td>
+      <td>} $$ .</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Step2</strong>: We write down the primal form:</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>Maximize $$\frac{1}{</td>
+      <td> </td>
+      <td>\theta</td>
+      <td> </td>
+      <td>}$$</td>
+    </tr>
+    <tr>
+      <td>Subject to min value of $$</td>
+      <td>x_i\theta+b</td>
+      <td>$$ equals to 1</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<p>which could also be written as
+Minimize \(||\theta||=\frac{1}{2} \theta \theta^T\)
+Subject to \(|x_i\theta+b| \ge 1\)</p>
+
+<p>Step3: We’d like to find the dual form. Using lagrange multiplier:</p>
+
+\[L(\theta,b,\alpha)=\frac{1}{2} \theta \theta^T - \Sigma^N_{i=1} \alpha_i( y_i(x_i\theta+b)-1)\]
+
+<p>We take the partial derivative of \(\theta, b\), and get:</p>
+
+\[\theta = \Sigma^N_{i=1} \alpha_i y_i x_i\\
+\Sigma^N_{i=1} \alpha_i y_i = 0\]
+
+<p>Then we substitute the \(L(\theta,b,\alpha)\):</p>
+
+<p>We need to maximize</p>
+
+\[\begin{aligned}
+L(\theta,b,\alpha) &amp;= \Sigma^N_{i=1} \alpha_i+\frac{1}{2} \theta \theta^T -\Sigma^N_{i=1} \alpha_i y_i x_i\theta\\
+&amp;= \Sigma^N_{i=1} \alpha_i+\frac{1}{2}\Sigma^N_{i=1} \alpha_i y_i x_i \Sigma^N_{j=1} \alpha_j y_j x_j^T - \Sigma^N_{i=1} \alpha_i y_i x_i \Sigma^N_{j=1} \alpha_j y_j x_j^T \\
+&amp;=\Sigma^N_{i=1} \alpha_i -\frac{1}{2}\Sigma^N_{i=1}\Sigma^N_{j=1} \alpha_i \alpha_j y_i y_j x_i x_j^T
+\end{aligned}\]
+
+<p>s.t. \(\alpha_i \ge 0\) and \(\Sigma^N_{i=1} \alpha_i y_i=0\)</p>
+
+<p>As we can tell from the dual problem, the objective function now depends only on the Lagrange multipliers. Now we’ll use quadratic programming to solve for the best \(\alpha\).</p>
+
+<p>Then for training, we get \(\theta=\Sigma^N_{i=1}\alpha_i y_i x_i\), b we pick any support vector and calculate \(y_i(x_i\theta+b)=1\).</p>
+
+<p>For testing, we calculate \(s\theta+b=\Sigma\alpha_i y_i x_i s^T+b\) where \(s\) is (1*d) vector of testing point.</p>
+
+<h2 id="not-linearly-separable-svm">Not Linearly Separable SVM</h2>
+
+<h3 id="kernel-trick">Kernel Trick</h3>
+
+<p><strong>Idea 1: Use Polar Coordinates</strong>: for the “circle” seperable data, we can mapping the coordinate to polar coordinates.</p>
+
+<figure>
+
+  <picture>
+    
+      <source media="(max-width: 480px)" srcset="/assets/img/svm/svm3-480.webp" />
+    
+      <source media="(max-width: 800px)" srcset="/assets/img/svm/svm3-800.webp" />
+    
+      <source media="(max-width: 1400px)" srcset="/assets/img/svm/svm3-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img class="img-fluid rounded z-depth-1" src="/assets/img/svm/svm3.png" />
+
+  </picture>
+
+  
+
+</figure>
+
+<p><strong>Map Data to Higher Dimension</strong>:</p>
+
+<figure>
+
+  <picture>
+    
+      <source media="(max-width: 480px)" srcset="/assets/img/svm/svm12-480.webp" />
+    
+      <source media="(max-width: 800px)" srcset="/assets/img/svm/svm12-800.webp" />
+    
+      <source media="(max-width: 1400px)" srcset="/assets/img/svm/svm12-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img class="img-fluid rounded z-depth-1" src="/assets/img/svm/svm12.png" />
+
+  </picture>
+
+  
+
+</figure>
+
+<p><strong>Common Kernels</strong>:</p>
+
+<figure>
+
+  <picture>
+    
+      <source media="(max-width: 480px)" srcset="/assets/img/svm/svm13-480.webp" />
+    
+      <source media="(max-width: 800px)" srcset="/assets/img/svm/svm13-800.webp" />
+    
+      <source media="(max-width: 1400px)" srcset="/assets/img/svm/svm13-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img class="img-fluid rounded z-depth-1" src="/assets/img/svm/svm13.png" />
+
+  </picture>
+
+  
+
+</figure>
+
+<ul>
+  <li>
+    <p>Always try the linear kernel first (remember that LinearSVC is much faster than SVC(ker nel=”linear”)), especially if the training set is very large or if it has plenty of features.</p>
+  </li>
+  <li>
+    <p>If the training set is not too large, you should try the Gaussian RBF kernel as well; it works well in most cases.</p>
+    <ul>
+      <li>The Gaussian RBF kernel has two hyperparameters: <strong>gamma</strong>: the higher, the narrower of the bell-shape curve, the more irregular of the decision boundary. <strong>C</strong>: The higher the narrower the street, thus less violation and higher irregular.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="soft-margin">Soft Margin</h3>
+
+<p>We can penalize the violated points by adding:</p>
+
+<p>Minimize \(\frac{1}{2} \theta \theta^T + C\Sigma^N_{i=1}\xi_i\)
+Subject to \(|x_i\theta+b| \ge 1-\xi_i\) Where \(\xi_i \ge 0\).</p>
+
+<p>A smaller C value leads to a wider street but more margin violations</p>
+
+<h3 id="complexity">Complexity</h3>
+
+<figure>
+
+  <picture>
+    
+      <source media="(max-width: 480px)" srcset="/assets/img/svm/svm14-480.webp" />
+    
+      <source media="(max-width: 800px)" srcset="/assets/img/svm/svm14-800.webp" />
+    
+      <source media="(max-width: 1400px)" srcset="/assets/img/svm/svm14-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img class="img-fluid rounded z-depth-1" src="/assets/img/svm/svm14.png" />
+
+  </picture>
+
+  
+
+</figure>
+
+<ul>
+  <li>Gets dreadfully slow when the number of training instances gets large</li>
+  <li>Perfect for complex but small or medium training sets, it scales well with the number of features, especially with sparse features (i.e., when each instance has few nonzero features).</li>
+  <li>GD converges much more slowly than the methods based on QP.</li>
+  <li>If there is millions of instances and a smaller number of features, it’s better to use primal form to optimize. The computational complexity of the primal form of the SVM problem is proportional tot he number of training instances m, while the comp. complexity of the dual form is proportional to a number between m^2 and m^3.<a href="https://quizlet.com/349584710/machine-learning-ch-5-flash-cards/">source</a></li>
+</ul>]]></content><author><name></name></author><category term="notes" /><category term="machinelearning" /><summary type="html"><![CDATA[Duality, Lageange Multiplier, Kernel Method, Quadratic Programming]]></summary></entry><entry><title type="html">Regression Training, Regularization and Odds</title><link href="https://manqiul.github.io/blog/2021/regression/" rel="alternate" type="text/html" title="Regression Training, Regularization and Odds" /><published>2021-12-25T12:40:16+00:00</published><updated>2021-12-25T12:40:16+00:00</updated><id>https://manqiul.github.io/blog/2021/regression</id><content type="html" xml:base="https://manqiul.github.io/blog/2021/regression/"><![CDATA[<h3 id="linear-regression">Linear Regression</h3>
+
+<p><strong>1. Closed Form</strong>
+<a href="https://brunomaga.github.io/Supervised-Learning">source</a></p>
+
+<p>We’d like to minimize the loss function, which in linear regression we use MSE:</p>
+
+\[\begin{aligned}
+(y−Xw)^2&amp;=(y−Xw)^T(y−Xw)\\
+&amp;=y^Ty−y^TXw-(Xw)^Ty+(Xw)^TXw\\
+&amp;=y^Ty - w^TX^Ty-w^TX^Ty+w^TX^TXw\\
+&amp;=y^Ty-2w^TX^Ty+w^TX^TXw;
+\end{aligned}\]
+
+<p>Then we take the derivative, and get</p>
+
+\[0-2X^Ty+2X^TXw=0\\\]
+
+<p>which gives us:</p>
+
+\[w=(X^TX)^{-1}X^Ty\\\]
+
+<p>As it takes a lot to calculate the inverse of $X^TX$, we can use pseudo inverse and matrix factorization instead.</p>
+
+<p><strong>2. Pseudo Inverse</strong>
+<a href="https://en.wikipedia.org/wiki/Proofs_involving_the_Moore%E2%80%93Penrose_inverse#A+_=_(A*_A)+A*">source1</a>
+<a href="https://spartanideas.msu.edu/2015/10/21/regression-via-pseudoinverse/">source2</a>
+<a href="https://mathformachines.com/posts/least-squares-with-the-mp-inverse/">source3</a></p>
+
+<p>By definition, pseudoinverse of matrix \(X^+=(X^TX)^{-1}X^T\). So if the $X$ is invertible, using pseudoinverse \(w=X^+y\) to calculate $w$ would be the same as the closed form.</p>
+
+<ul>
+  <li>Note: in this case, to reduce the calculation cost, we can use singular vector decomposition \(X = UΣV^T\) to calculate \(X^+\), which is \(X^+ = 𝑉Σ^{−1}𝑈^T\). The \(Σ^{−1}\) is easy to compute if we just take the reciprocal of the diagnals.</li>
+</ul>
+
+<p><strong>When $X$ is not invertible, the pseudoinverse form would still work</strong> (in a pseudo way), which is better than the closed form. In this case, the diagnol of $Σ$ would have zero values. so \(X^+ = 𝑉Σ^{+}𝑈^T\), where the \(Σ^{+}\) would be taking the non-zero values’ reciprocal and keep the zero values zero.</p>
+
+<p><strong>The closed form would have $O(n^3)$ complexity while the SVD method would have $O(n^2)$ computational complexity.</strong></p>
+
+<p><strong>3.GD, SGD, Mini-Batch GD</strong></p>
+
+<p>For regression problems, the loss function is convex. This means it will always have a global minimum.</p>
+
+<p>When we are using GD, we need to scale our data first, or the converging process would be longer. (if one feature is smaller, it would take a larger step to achieve similar decress in loss function as other features.)</p>
+
+<figure>
+
+  <picture>
+    
+      <source media="(max-width: 480px)" srcset="/assets/img/mlnew1-480.webp" />
+    
+      <source media="(max-width: 800px)" srcset="/assets/img/mlnew1-800.webp" />
+    
+      <source media="(max-width: 1400px)" srcset="/assets/img/mlnew1-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img class="img-fluid rounded z-depth-1" src="/assets/img/mlnew1.png" />
+
+  </picture>
+
+  
+
+</figure>
+
+<p>We will calculate the gradient for each of the parameters, and take a step down.</p>
+
+<ul>
+  <li>Note: the gradient is pointing uphill.</li>
+</ul>
+
+\[\theta^{new}=\theta - r * \triangledown MSE(\theta)\]
+
+<p>The SGD would take longer to reach global minimum, and bounce around it as new data point being added. But it allows the algorithm to jump out of local minimum and reach the global minimum.</p>
+
+<blockquote>
+
+**learning schedule**: If the learning rate is reduced too quickly, you may get stuck in a local minimum, or even end up frozen halfway to the minimum. If the learning rate is reduced too slowly, you may jump around the minimum for a long time and end up with a suboptimal solution if you halt training too early.
+
+</blockquote>
+
+<p>The training instances of SGD must be independent and identically distributed (IID)</p>
+
+<blockquote>
+
+If you do not do this, for example if the instances are sorted by label, then SGD will start by **optimizing for one label, then the next, and so on, and it will not settle close to the global minimum.**
+
+</blockquote>
+
+<p><strong>4. Extension: Polynomial Regression</strong></p>
+
+<ul>
+  <li>Overfitting and underfitting</li>
+  <li>Trade off between variance and bias</li>
+</ul>
+
+<h3 id="regularized-linear-model">Regularized Linear Model</h3>
+
+<p><strong>1. Ridge Regression</strong></p>
+
+<ul>
+  <li>regularization term: \(\alpha\sum^n\theta^2\), added to cost function. (It should not be added into evaluation function, as by objective, we aimed at decreasing the loss.)</li>
+  <li>The bias term \(θ_0\) is not regularized.</li>
+  <li>The input data need to be regularized.</li>
+  <li>
+\[\hat θ=(X^TX+\alpha I)^{−1} X^T y\]
+  </li>
+</ul>
+
+<p><strong>2. Lasso Regression</strong></p>
+
+<ul>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>regularization term: $$\alpha\sum^n</td>
+          <td>\theta</td>
+          <td>$$.</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>Tends to completely elimi‐ nate the weights of the least important features, and return sparse outcome.</li>
+  <li>\(\theta^T\theta = Constraint = C\), when \(\alpha\) goes up, \(C\) goes down.</li>
+</ul>
+
+<blockquote>
+
+For univariate linear regression or linear regression with uncorrelated features + lasso regularization, there is a closed-form solution. For more generalized forms of regression such as linear regression with correlated features or logistic regression, there is **no closed-form solution** of the lasso-regularized version. [Source](https://www.quora.com/Is-there-a-closed-form-solution-to-LASSO-regression)
+
+</blockquote>
+
+<figure>
+
+  <picture>
+    
+      <source media="(max-width: 480px)" srcset="/assets/img/mlnew2-480.webp" />
+    
+      <source media="(max-width: 800px)" srcset="/assets/img/mlnew2-800.webp" />
+    
+      <source media="(max-width: 1400px)" srcset="/assets/img/mlnew2-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img class="img-fluid rounded z-depth-1" src="/assets/img/mlnew2.png" />
+
+  </picture>
+
+  
+
+</figure>
+
+<p><strong>3. Elastic Net</strong></p>
+
+<p>Combination of Ridge Regression and Lasso Regression.</p>
+
+<blockquote>
+
+Ridge is a good default, but if you suspect that only a few features are actually useful, you should **prefer Lasso or Elastic Net over ridge** since they tend to reduce the useless features’ weights down to zero as we have discussed. In general, **Elastic Net is preferred over Lasso** since Lasso may behave **erratically** when the number of features is greater than the number of training instances or when several features are **strongly correlated**.
+
+</blockquote>
+
+<p><strong>4. Early Stopping</strong></p>
+
+<figure>
+
+  <picture>
+    
+      <source media="(max-width: 480px)" srcset="/assets/img/mlnew3-480.webp" />
+    
+      <source media="(max-width: 800px)" srcset="/assets/img/mlnew3-800.webp" />
+    
+      <source media="(max-width: 1400px)" srcset="/assets/img/mlnew3-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img class="img-fluid rounded z-depth-1" src="/assets/img/mlnew3.png" />
+
+  </picture>
+
+  
+
+</figure>
+
+<p>Using GD, and stop when validation error goes up. For SGD and Mini Batch, the curve would not be that smooth. So we can stop when validation error goes up for a while.</p>
+
+<h3 id="logistic-regression">Logistic Regression</h3>
+
+<ul>
+  <li>
+    <p>Form: \(\hat p = \sigma(X^T\theta)\), where \(\sigma(t)=\frac{1}{1+exp^{-t}}\).</p>
+  </li>
+  <li>
+    <p>t is called logit, \(logit(p)=log(\frac{p}{1-p})\),is the inverse of logistic function. \(t = logit(\hat p)\).</p>
+  </li>
+  <li>
+    <p>Logit is also called log-odds, as it is the log of the ratio between the estimated probability for the positive class and the estimated probability for the negative class.</p>
+  </li>
+  <li>
+    <p>MLE: \(likelihood = \hat y * y + (1 – \hat y) * (1 – y)\),</p>
+
+    <ul>
+      <li>This function will always return a large probability when the model is close to the matching class value, and a small value when it is far away, for both y=0 and y=1 cases. <a href="https://machinelearningmastery.com/logistic-regression-with-maximum-likelihood-estimation/">Source</a></li>
+    </ul>
+  </li>
+  <li>
+    <p>log-likelihood = \(likelihood = log(\hat y) * y + log(1 – \hat y) * (1 – y)\)</p>
+
+    <ul>
+      <li>equivalent to cross-entropy</li>
+      <li>Note: Cross entropy = \(-(log(q_{class0}) * p_{class0} + log(q_{class1}) * p_{class1})\)</li>
+    </ul>
+  </li>
+  <li>
+    <p>Cost function: \(log loss=-\frac{1}{m}\sum^m_{i=1}(y^ilog(\hat p^i)+(1-y^i)log(\hat (1-p^i)))\)</p>
+
+    <ul>
+      <li>No closed form.</li>
+    </ul>
+  </li>
+  <li>
+    <p>Linear decision boundary</p>
+    <ul>
+      <li>It is the the set of points x such that \(\theta_0 + \theta_1x_1 + \theta_2x_2 = 0\), which defines a straight line.</li>
+    </ul>
+  </li>
+</ul>
+
+<figure>
+
+  <picture>
+    
+      <source media="(max-width: 480px)" srcset="/assets/img/mlnew4-480.webp" />
+    
+      <source media="(max-width: 800px)" srcset="/assets/img/mlnew4-800.webp" />
+    
+      <source media="(max-width: 1400px)" srcset="/assets/img/mlnew4-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img class="img-fluid rounded z-depth-1" src="/assets/img/mlnew4.png" />
+
+  </picture>
+
+  
+
+</figure>
+
+<h3 id="softmax-regression">Softmax Regression</h3>
+
+<p>Softmax function: it computes the exponential of every score and normalizes them by dividing the sum of all the exponentials.</p>
+
+\[\sigma(p_i) = \frac{e^{p_i}}{\sum^k_{i=1} e^{p_i}}\]]]></content><author><name></name></author><category term="notes" /><category term="machinelearning" /><summary type="html"><![CDATA[pseudoinverse, GD, regularization, logistic regression, odds]]></summary></entry><entry><title type="html">Word Representation Methods using Deep Learning</title><link href="https://manqiul.github.io/blog/2021/representation/" rel="alternate" type="text/html" title="Word Representation Methods using Deep Learning" /><published>2021-12-13T08:40:16+00:00</published><updated>2021-12-13T08:40:16+00:00</updated><id>https://manqiul.github.io/blog/2021/representation</id><content type="html" xml:base="https://manqiul.github.io/blog/2021/representation/"><![CDATA[<h2 id="distributed-representations-1-word-embedding">Distributed representations 1: Word embedding</h2>
+
+<h3 id="distributed-representations-of-words-and-phrases-and-their-compositionality">Distributed Representations of Words and Phrases and their Compositionality</h3>
+
+<p>Before we advance to distributed representations of words, we first need to understand the “sparse representations”</p>
+
+<h4 id="understanding-sparse-representations">Understanding Sparse Representations</h4>
+
+<p>Examples:</p>
+
+<ol>
+  <li>One-hot encoding</li>
+  <li>Bag of words: without order information; representation: a length N vector, N is size of vocabulary. Can be represented as Binary Matrix, Count Matrix or TF-IDF Matrix. Can from bag of words to bag of grams.</li>
+</ol>
+
+<figure>
+
+  <picture>
+    
+      <source media="(max-width: 480px)" srcset="/assets/img/tfidf-480.webp" />
+    
+      <source media="(max-width: 800px)" srcset="/assets/img/tfidf-800.webp" />
+    
+      <source media="(max-width: 1400px)" srcset="/assets/img/tfidf-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img class="img-fluid rounded z-depth-1" src="/assets/img/tfidf.png" />
+
+  </picture>
+
+  
+
+</figure>
+
+<p>Drawbacks:</p>
+
+<ol>
+  <li>not captureing sematic correlations</li>
+  <li>vectors are sprse and high-dimensional</li>
+</ol>
+
+<p>Source: DLT lecture notes by Chao Zhang, Georgia Tech</p>
+
+<h4 id="understanding-dimension-reduction-and-topic-modeling">Understanding Dimension Reduction and Topic Modeling</h4>
+
+<ul>
+  <li>Latent Semantic Analysis
+    <ul>
+      <li>Using SVD, mapping data into low-dimensional representation by only selecting top k topics</li>
+      <li>Source: <a href="https://www.youtube.com/playlist?list=PLroeQp1c-t3qwyrsq66tBxfR6iX6kSslt">LSA Youtube</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="understanding-word-embedding">Understanding word embedding</h4>
+
+<ul>
+  <li>word2vec[co-occurrence statistics], Local context window methods
+    <ul>
+      <li>CBoW: use a window to predict center word</li>
+      <li>SkipGarm: use center word to predict surrounding words
+        <ul>
+          <li>Two layer NN,two weight matrix. each time we will pass one center word, and each word need to be forward pass for k times.</li>
+          <li>the hidden layer doesn’t use any activation function, which is directly passed to the output layer. The output layer using softmax probablility, get the word with the highest prob and compare to the output word’s on-hot encoding.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Objective: find word representations that are useful for predicting the surrounding words.</li>
+</ul>
+
+<figure>
+
+  <picture>
+    
+      <source media="(max-width: 480px)" srcset="/assets/img/wordembe-480.webp" />
+    
+      <source media="(max-width: 800px)" srcset="/assets/img/wordembe-800.webp" />
+    
+      <source media="(max-width: 1400px)" srcset="/assets/img/wordembe-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img class="img-fluid rounded z-depth-1" src="/assets/img/wordembe.png" />
+
+  </picture>
+
+  
+
+</figure>
+
+<p>source: <a href="https://towardsdatascience.com/skip-gram-nlp-context-words-prediction-algorithm-5bbf34f84e0c">skip-gram</a>, <a href="https://www.youtube.com/watch?v=pOqz6KuvLV8">skip-gram youtube</a>, <a href="https://arxiv.org/pdf/1301.3781.pdf">paper link</a></p>
+
+<h4 id="about-this-paper">About this Paper</h4>
+
+<p>This paper mainly discussed the extensions of Skip-gram model. First is to use hierarchical softmax to reduce computational complexity. Second is to use negative sampling to reduce noise. Third is to subsampling the frequent word like “a”, “the”.</p>
+
+<p>source: <a href="https://jonathan-hui.medium.com/nlp-word-embedding-glove-5e7f523999f6">word embedding glove</a></p>
+
+<h3 id="glove-global-vectors-for-word-representation">GloVe: Global Vectors for Word Representation</h3>
+
+<p>First this paper discussed the drawbacks of LSA and local context window methods:</p>
+
+<ul>
+  <li>LSA: poorly on the word analogy task</li>
+  <li>Local context window: poorly utilize statistics of corpus(such as global co-occurrence counts)</li>
+  <li>And then it introduces the GloVe:</li>
+</ul>
+
+<figure>
+
+  <picture>
+    
+      <source media="(max-width: 480px)" srcset="/assets/img/glove-480.webp" />
+    
+      <source media="(max-width: 800px)" srcset="/assets/img/glove-800.webp" />
+    
+      <source media="(max-width: 1400px)" srcset="/assets/img/glove-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img class="img-fluid rounded z-depth-1" src="/assets/img/glove.png" />
+
+  </picture>
+
+  
+
+</figure>
+
+<p>source: <a href="https://www.youtube.com/watch?v=QoUYlxl1RGI">glove youtube</a>, <a href="https://jonathan-hui.medium.com/nlp-word-embedding-glove-5e7f523999f6">glove medium</a>, <a href="https://blog.csdn.net/coderTC/article/details/73864097">glove csdn</a></p>
+
+<h2 id="distributed-representation-2-deep-contextual-representation">Distributed Representation 2: Deep Contextual Representation</h2>
+
+<h3 id="deep-contextualized-word-representations-elmo">Deep contextualized word representations (ELMo)</h3>
+
+<p><a href="https://www.analyticsvidhya.com/blog/2019/03/learn-to-use-elmo-to-extract-features-from-text/">ELMo</a></p>
+
+<p><a href="https://www.youtube.com/watch?v=YZerhaFMPTw&amp;t=366s">ELMo youtube</a></p>
+
+<figure>
+
+  <picture>
+    
+      <source media="(max-width: 480px)" srcset="/assets/img/elmo-480.webp" />
+    
+      <source media="(max-width: 800px)" srcset="/assets/img/elmo-800.webp" />
+    
+      <source media="(max-width: 1400px)" srcset="/assets/img/elmo-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img class="img-fluid rounded z-depth-1" src="/assets/img/elmo.png" />
+
+  </picture>
+
+  
+
+</figure>
+
+<h3 id="bert-pre-training-of-deep-bidirectional-transformers-for-language-understanding">BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding</h3>
+
+<p><a href="https://www.youtube.com/watch?v=xI0HHN5XKDo">BERT youtube</a></p>
+
+<figure>
+
+  <picture>
+    
+      <source media="(max-width: 480px)" srcset="/assets/img/BERT1-480.webp" />
+    
+      <source media="(max-width: 800px)" srcset="/assets/img/BERT1-800.webp" />
+    
+      <source media="(max-width: 1400px)" srcset="/assets/img/BERT1-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img class="img-fluid rounded z-depth-1" src="/assets/img/BERT1.png" />
+
+  </picture>
+
+  
+
+</figure>
+
+<figure>
+
+  <picture>
+    
+      <source media="(max-width: 480px)" srcset="/assets/img/BERT2-480.webp" />
+    
+      <source media="(max-width: 800px)" srcset="/assets/img/BERT2-800.webp" />
+    
+      <source media="(max-width: 1400px)" srcset="/assets/img/BERT2-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img class="img-fluid rounded z-depth-1" src="/assets/img/BERT2.png" />
+
+  </picture>
+
+  
+
+</figure>
+
+<figure>
+
+  <picture>
+    
+      <source media="(max-width: 480px)" srcset="/assets/img/BERT3-480.webp" />
+    
+      <source media="(max-width: 800px)" srcset="/assets/img/BERT3-800.webp" />
+    
+      <source media="(max-width: 1400px)" srcset="/assets/img/BERT3-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img class="img-fluid rounded z-depth-1" src="/assets/img/BERT3.png" />
+
+  </picture>
+
+  
+
+</figure>
+
+<figure>
+
+  <picture>
+    
+      <source media="(max-width: 480px)" srcset="/assets/img/BERT4-480.webp" />
+    
+      <source media="(max-width: 800px)" srcset="/assets/img/BERT4-800.webp" />
+    
+      <source media="(max-width: 1400px)" srcset="/assets/img/BERT4-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img class="img-fluid rounded z-depth-1" src="/assets/img/BERT4.png" />
+
+  </picture>
+
+  
+
+</figure>
+
+<figure>
+
+  <picture>
+    
+      <source media="(max-width: 480px)" srcset="/assets/img/BERT5-480.webp" />
+    
+      <source media="(max-width: 800px)" srcset="/assets/img/BERT5-800.webp" />
+    
+      <source media="(max-width: 1400px)" srcset="/assets/img/BERT5-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img class="img-fluid rounded z-depth-1" src="/assets/img/BERT5.png" />
+
+  </picture>
+
+  
+
+</figure>
+
+<figure>
+
+  <picture>
+    
+      <source media="(max-width: 480px)" srcset="/assets/img/BERT6-480.webp" />
+    
+      <source media="(max-width: 800px)" srcset="/assets/img/BERT6-800.webp" />
+    
+      <source media="(max-width: 1400px)" srcset="/assets/img/BERT6-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img class="img-fluid rounded z-depth-1" src="/assets/img/BERT6.png" />
+
+  </picture>
+
+  
+
+</figure>
+
+<figure>
+
+  <picture>
+    
+      <source media="(max-width: 480px)" srcset="/assets/img/BERT7-480.webp" />
+    
+      <source media="(max-width: 800px)" srcset="/assets/img/BERT7-800.webp" />
+    
+      <source media="(max-width: 1400px)" srcset="/assets/img/BERT7-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img class="img-fluid rounded z-depth-1" src="/assets/img/BERT7.png" />
+
+  </picture>
+
+  
+
+</figure>]]></content><author><name></name></author><category term="paperreading" /><category term="nlp" /><summary type="html"><![CDATA[Paper reading notes for LSA, Skip-gram, GloVe, ELMo and BERT.]]></summary></entry><entry><title type="html">Recommendation Algorithm Basics</title><link href="https://manqiul.github.io/blog/2021/Notes-Recommender-System/" rel="alternate" type="text/html" title="Recommendation Algorithm Basics" /><published>2021-12-10T16:40:16+00:00</published><updated>2021-12-10T16:40:16+00:00</updated><id>https://manqiul.github.io/blog/2021/Notes-Recommender-System</id><content type="html" xml:base="https://manqiul.github.io/blog/2021/Notes-Recommender-System/"><![CDATA[<p>This is based on <a href="https://www.udemy.com/course/recommender-systems/learn/lecture/11686566#overview">udemy course recommender system</a></p>
+
+<h2 id="1-hacker-news-formula">1. Hacker News Formula</h2>
+
+<p><a href="http://www.righto.com/2013/11/how-hacker-news-ranking-really-works.html">Hacker News intro</a></p>
+
+<figure>
+
+  <picture>
+    
+      <source media="(max-width: 480px)" srcset="/assets/img/hackernew-480.webp" />
+    
+      <source media="(max-width: 800px)" srcset="/assets/img/hackernew-800.webp" />
+    
+      <source media="(max-width: 1400px)" srcset="/assets/img/hackernew-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img class="img-fluid rounded z-depth-1" src="/assets/img/hackernew.png" />
+
+  </picture>
+
+  
+
+</figure>
+
+<p>Because the time has a larger exponent than the votes, an article’s score will eventually drop to zero, so nothing stays on the front page too long. This exponent is known as <em>gravity</em>.</p>
+
+<p>But for efficiency, stories are individually reranked only occasionally. When a story is upvoted, it is reranked and moved up or down the list to its appropriate spot, leaving the other stories unchanged. Thus, the amount of reranking is significantly reduced.</p>
+
+<p>There is, however, the possibility that a story stops getting votes and ends up stuck in a high position. To avoid this, every 30 seconds one of the top 50 stories is randomly selected and reranked. The consequence is that a story may be “wrongly” ranked for many minutes if it isn’t getting votes. In addition, pages can be cached for 90 seconds.The score for an article shoots up rapidly and then slowly drops over many hours.</p>
+
+<figure>
+
+  <picture>
+    
+      <source media="(max-width: 480px)" srcset="/assets/img/hackernew1-480.webp" />
+    
+      <source media="(max-width: 800px)" srcset="/assets/img/hackernew1-800.webp" />
+    
+      <source media="(max-width: 1400px)" srcset="/assets/img/hackernew1-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img class="img-fluid rounded z-depth-1" src="/assets/img/hackernew1.png" />
+
+  </picture>
+
+  
+
+</figure>
+
+<p>The scoring formula accounts for much of this: an article getting a constant rate of votes will peak quickly and then gradually descend. But the observed peak is even faster - this is because articles tend to get a lot of votes in the first hour or two, and then the voting rate drops off.</p>
+
+<p>Combining these two factors yields the steep curves shown.The green triangles and text show where “controversy” penalties were applied. The blue triangles and text show where articles were penalized into oblivion, dropping off the top 60. Milder penalties are not shown here.</p>
+
+<h2 id="2-reddit-ranking">2. Reddit Ranking</h2>
+
+<p><a href="https://medium.com/hacking-and-gonzo/how-reddit-ranking-algorithms-work-ef111e33d0d9">reddit algorithms intro</a></p>
+
+<p>Use log: Idea of diminishing return.score is getting bigger as time passes by</p>
+
+<figure>
+
+  <picture>
+    
+      <source media="(max-width: 480px)" srcset="/assets/img/imagew-480.webp" />
+    
+      <source media="(max-width: 800px)" srcset="/assets/img/imagew-800.webp" />
+    
+      <source media="(max-width: 1400px)" srcset="/assets/img/imagew-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img class="img-fluid rounded z-depth-1" src="/assets/img/imagew.png" />
+
+  </picture>
+
+  
+
+</figure>
+
+<h2 id="3-average-rating">3. Average Rating</h2>
+
+<p>Confidence: Normal, binomial,</p>
+
+<p><strong>Wilson Score Interval</strong></p>
+
+<figure>
+
+  <picture>
+    
+      <source media="(max-width: 480px)" srcset="/assets/img/wilson-480.webp" />
+    
+      <source media="(max-width: 800px)" srcset="/assets/img/wilson-800.webp" />
+    
+      <source media="(max-width: 1400px)" srcset="/assets/img/wilson-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img class="img-fluid rounded z-depth-1" src="/assets/img/wilson.png" />
+
+  </picture>
+
+  
+
+</figure>
+
+<p><a href="https://en.wikipedia.org/wiki/Binomial_proportion_confidence_interval">Binomial proportion confidence interval</a></p>
+
+<p><a href="https://www.evanmiller.org/how-not-to-sort-by-average-rating.html">how to not sort by average rating</a></p>
+
+<p>Score = Lower bound of Wilson score confidence interval for a Bernoulli parameter</p>
+
+<p><strong>Smoothing:</strong></p>
+
+<figure>
+
+  <picture>
+    
+      <source media="(max-width: 480px)" srcset="/assets/img/smoothing-480.webp" />
+    
+      <source media="(max-width: 800px)" srcset="/assets/img/smoothing-800.webp" />
+    
+      <source media="(max-width: 1400px)" srcset="/assets/img/smoothing-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img class="img-fluid rounded z-depth-1" src="/assets/img/smoothing.png" />
+
+  </picture>
+
+  
+
+</figure>
+
+<p><strong>Explore-exploit dilemma</strong></p>
+
+<figure>
+
+  <picture>
+    
+      <source media="(max-width: 480px)" srcset="/assets/img/deli-480.webp" />
+    
+      <source media="(max-width: 800px)" srcset="/assets/img/deli-800.webp" />
+    
+      <source media="(max-width: 1400px)" srcset="/assets/img/deli-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img class="img-fluid rounded z-depth-1" src="/assets/img/deli.png" />
+
+  </picture>
+
+  
+
+</figure>
+
+<p><strong>Bayesian</strong><a href="https://en.wikipedia.org/wiki/Conjugate_prior">Conjugate prior</a></p>
+
+<figure>
+
+  <picture>
+    
+      <source media="(max-width: 480px)" srcset="/assets/img/bayes1-480.webp" />
+    
+      <source media="(max-width: 800px)" srcset="/assets/img/bayes1-800.webp" />
+    
+      <source media="(max-width: 1400px)" srcset="/assets/img/bayes1-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img class="img-fluid rounded z-depth-1" src="/assets/img/bayes1.png" />
+
+  </picture>
+
+  
+
+</figure>
+
+<figure>
+
+  <picture>
+    
+      <source media="(max-width: 480px)" srcset="/assets/img/bayes2-480.webp" />
+    
+      <source media="(max-width: 800px)" srcset="/assets/img/bayes2-800.webp" />
+    
+      <source media="(max-width: 1400px)" srcset="/assets/img/bayes2-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img class="img-fluid rounded z-depth-1" src="/assets/img/bayes2.png" />
+
+  </picture>
+
+  
+
+</figure>
+
+<figure>
+
+  <picture>
+    
+      <source media="(max-width: 480px)" srcset="/assets/img/bayes3-480.webp" />
+    
+      <source media="(max-width: 800px)" srcset="/assets/img/bayes3-800.webp" />
+    
+      <source media="(max-width: 1400px)" srcset="/assets/img/bayes3-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img class="img-fluid rounded z-depth-1" src="/assets/img/bayes3.png" />
+
+  </picture>
+
+  
+
+</figure>
+
+<figure>
+
+  <picture>
+    
+      <source media="(max-width: 480px)" srcset="/assets/img/bayes4-480.webp" />
+    
+      <source media="(max-width: 800px)" srcset="/assets/img/bayes4-800.webp" />
+    
+      <source media="(max-width: 1400px)" srcset="/assets/img/bayes4-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img class="img-fluid rounded z-depth-1" src="/assets/img/bayes4.png" />
+
+  </picture>
+
+  
+
+</figure>
+
+<figure>
+
+  <picture>
+    
+      <source media="(max-width: 480px)" srcset="/assets/img/bayes5-480.webp" />
+    
+      <source media="(max-width: 800px)" srcset="/assets/img/bayes5-800.webp" />
+    
+      <source media="(max-width: 1400px)" srcset="/assets/img/bayes5-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img class="img-fluid rounded z-depth-1" src="/assets/img/bayes5.png" />
+
+  </picture>
+
+  
+
+</figure>]]></content><author><name></name></author><category term="notes" /><category term="machinglearning" /><summary type="html"><![CDATA[Study notes for recommender system, such as hacker news formula, ranking, etc.]]></summary></entry><entry><title type="html">Metrics and Analytics of Product Building</title><link href="https://manqiul.github.io/blog/2021/data-informed-product-analysis-notes/" rel="alternate" type="text/html" title="Metrics and Analytics of Product Building" /><published>2021-11-26T16:40:16+00:00</published><updated>2021-11-26T16:40:16+00:00</updated><id>https://manqiul.github.io/blog/2021/data-informed-product-analysis-notes</id><content type="html" xml:base="https://manqiul.github.io/blog/2021/data-informed-product-analysis-notes/"><![CDATA[<p>These notes were based on the <a href="https://medium.com/sequoia-capital/sequoia-data-science-8a76098035a4">sequoia-data-science</a> series.</p>
+
+<h1 id="product-evolution"><strong>Product Evolution</strong></h1>
+
+<p>Note: the total number of active users for a given time period is the sum of <strong>retention, resurrection and new users.</strong></p>
+
+<p>Your month-over-month net user growth depends entirely on the Quick Ratio: <strong>(new users + resurrected users) / churned users</strong>.</p>
+
+<figure>
+
+  <picture>
+    
+      <source media="(max-width: 480px)" srcset="/assets/img/image-480.webp" />
+    
+      <source media="(max-width: 800px)" srcset="/assets/img/image-800.webp" />
+    
+      <source media="(max-width: 1400px)" srcset="/assets/img/image-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img class="img-fluid rounded z-depth-1" src="/assets/img/image.png" />
+
+  </picture>
+
+  
+
+</figure>
+
+<p>Early on, churn far exceeds resurrection; this gap gradually narrows as the curves level out. (Note: <strong>for a weak product, the curves will not flatten out and will eventually reach zero</strong>, whereas for a strong product, the curves will begin to rise and will eventually flatten.)</p>
+
+<figure>
+
+  <picture>
+    
+      <source media="(max-width: 480px)" srcset="/assets/img/image%201-480.webp" />
+    
+      <source media="(max-width: 800px)" srcset="/assets/img/image%201-800.webp" />
+    
+      <source media="(max-width: 1400px)" srcset="/assets/img/image%201-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img class="img-fluid rounded z-depth-1" src="/assets/img/image%201.png" />
+
+  </picture>
+
+  
+
+</figure>
+
+<h3 id="early-stage">Early stage</h3>
+
+<p>In the Early phase, churn far exceeds resurrection and <strong>new users contribute significantly to MAU.</strong></p>
+
+<figure>
+
+  <picture>
+    
+      <source media="(max-width: 480px)" srcset="/assets/img/image%202-480.webp" />
+    
+      <source media="(max-width: 800px)" srcset="/assets/img/image%202-800.webp" />
+    
+      <source media="(max-width: 1400px)" srcset="/assets/img/image%202-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img class="img-fluid rounded z-depth-1" src="/assets/img/image%202.png" />
+
+  </picture>
+
+  
+
+</figure>
+
+<h3 id="growth-stage">Growth stage</h3>
+
+<figure>
+
+  <picture>
+    
+      <source media="(max-width: 480px)" srcset="/assets/img/image%203-480.webp" />
+    
+      <source media="(max-width: 800px)" srcset="/assets/img/image%203-800.webp" />
+    
+      <source media="(max-width: 1400px)" srcset="/assets/img/image%203-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img class="img-fluid rounded z-depth-1" src="/assets/img/image%203.png" />
+
+  </picture>
+
+  
+
+</figure>
+
+<h3 id="hyper-growth-stage">Hyper Growth stage</h3>
+
+<figure>
+
+  <picture>
+    
+      <source media="(max-width: 480px)" srcset="/assets/img/imagema-480.webp" />
+    
+      <source media="(max-width: 800px)" srcset="/assets/img/imagema-800.webp" />
+    
+      <source media="(max-width: 1400px)" srcset="/assets/img/imagema-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img class="img-fluid rounded z-depth-1" src="/assets/img/imagema.png" />
+
+  </picture>
+
+  
+
+</figure>
+
+<h3 id="mature-stage">Mature stage</h3>
+
+<figure>
+
+  <picture>
+    
+      <source media="(max-width: 480px)" srcset="/assets/img/image%204-480.webp" />
+    
+      <source media="(max-width: 800px)" srcset="/assets/img/image%204-800.webp" />
+    
+      <source media="(max-width: 1400px)" srcset="/assets/img/image%204-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img class="img-fluid rounded z-depth-1" src="/assets/img/image%204.png" />
+
+  </picture>
+
+  
+
+</figure>
+
+<h2 id="product-health"><strong>Product Health</strong></h2>
+
+<p>Good products grow well as they <strong>penetrate their market</strong>, <strong>retain and engage their users</strong>, and bring users back regularly with a <strong>healthy content loop</strong>.</p>
+<ul>
+  <li><strong>Context of overall market</strong></li>
+  <li>MAU/installs &amp; installs/overall market</li>
+  <li><strong>Growth of product (growth speed, driven source, speed change with penetration)</strong></li>
+  <li>MAU/WAU/DAU</li>
+  <li>D/D, W/W, M/M, Y/Y changes - (Comparing 28-day rolling windows)</li>
+  <li>Quick Ratio = (new + resurrected)/churned</li>
+  <li>New users/MAU</li>
+  <li>Sign-ups/installs</li>
+  <li><strong>Retention</strong></li>
+</ul>
+
+<figure>
+
+  <picture>
+    
+      <source media="(max-width: 480px)" srcset="/assets/img/image%205-480.webp" />
+    
+      <source media="(max-width: 800px)" srcset="/assets/img/image%205-800.webp" />
+    
+      <source media="(max-width: 1400px)" srcset="/assets/img/image%205-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img class="img-fluid rounded z-depth-1" src="/assets/img/image%205.png" />
+
+  </picture>
+
+  
+
+</figure>
+
+<p><strong>Cohort curves</strong></p>
+
+<p>In addition to Dn retention metrics, analyzing cohort curves is extremely important. Cohort curves will give you a much better idea of whether your retention is flattening, experiencing hyper growth or dropping to zero.</p>
+
+<figure>
+
+  <picture>
+    
+      <source media="(max-width: 480px)" srcset="/assets/img/image%206-480.webp" />
+    
+      <source media="(max-width: 800px)" srcset="/assets/img/image%206-800.webp" />
+    
+      <source media="(max-width: 1400px)" srcset="/assets/img/image%206-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img class="img-fluid rounded z-depth-1" src="/assets/img/image%206.png" />
+
+  </picture>
+
+  
+
+</figure>
+
+<p><strong>Stickiness</strong></p>
+
+<ul>
+  <li>DAU/MAU</li>
+  <li>open rate
+    <ul>
+      <li>percentage of people who have the product installed that use it in a given time frame</li>
+    </ul>
+  </li>
+  <li>Lness
+    <ul>
+      <li>number of days visited in a given time frame. For example, L5+/7 is the percentage of people who visit the product at least five times per week.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>Engagement</strong></p>
+
+<ul>
+  <li>Time spent/DAU</li>
+  <li>Number of Sessions</li>
+  <li>Time/session</li>
+  <li>Inventory available</li>
+  <li>number of views</li>
+</ul>
+
+<p><strong>Engagement - considerations</strong></p>
+
+<ul>
+  <li>Possible Segmentation</li>
+  <li>leading and lagging indicators(DAU,WAU,MAU)</li>
+</ul>
+
+<h2 id="retention">Retention</h2>
+
+<p>Retention is measured relative to two factors: time frames and events.</p>
+
+<p><strong>Triangle retention chart</strong></p>
+
+<ul>
+  <li>Horizontal features identify cohort-specific traits</li>
+  <li>Diagonal features are usually a result of product feature releases, news or other events that affect overall usage</li>
+  <li>Vertical features are commonly seen in subscription businesses that have annual plans, as well as in those that offer trials.</li>
+</ul>
+
+<hr />
+
+<h2 id="change-of-metrics"><strong>Change of Metrics</strong></h2>
+
+<h3 id="seasonality"><strong>Seasonality:</strong></h3>
+
+<p><a href="https://medium.com/sequoia-capital/analyzing-metric-changes-part-iii-seasonal-factors-53778e751ed2">See details here</a></p>
+
+<ul>
+  <li>
+    <p><strong>understand your product’s overall ecosystem</strong></p>
+
+    <ul>
+      <li>For example, it might be important to know what young people do during the summer, how middle-aged women shop, how people using Android behave compared to those using iOS or who is likely to be an early adopter of your product.</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Week-over-week movement</strong></p>
+
+    <ul>
+      <li>use seven-day (or rolling seven-day) averaging of the metric of interest</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Day-over-day movement</strong></p>
+  </li>
+  <li>
+    <p><strong>Year-over-year changes</strong></p>
+  </li>
+</ul>
+
+<h3 id="outside-factorscompetition-etc"><strong>Outside factors(competition etc.):</strong></h3>
+
+<ul>
+  <li>
+    <p><strong>ANALYZING COMPETITION</strong>:</p>
+
+    <ul>
+      <li>competition generally manifests as churn; while we can identify that people are churning, it is difficult if not impossible to know whether people are leaving for a competitor without user experience (UX) research.</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>ANALYZING EVENTS:</strong></p>
+  </li>
+  <li>
+    <p><strong>ANALYZING MACRO TRENDS：Hard to detect</strong></p>
+  </li>
+</ul>
+
+<h3 id="behavioral-changes"><strong>Behavioral Changes:</strong></h3>
+
+<p>“Mix” has multiple meanings, and is sometimes known as Simpson’s Paradox. A company’s “sales mix” is the proportion of each product it sells relative to its total sales. Similarly, “user population mix” is the proportion of a specific user base (for example, users from a given country) relative to the overall user base.</p>
+
+<p><strong>A change in a mix over time is known as “mix shift.”</strong></p>
+
+<ul>
+  <li><strong>Pure Mix Shift:</strong></li>
+</ul>
+
+<figure>
+
+  <picture>
+    
+      <source media="(max-width: 480px)" srcset="/assets/img/image%207-480.webp" />
+    
+      <source media="(max-width: 800px)" srcset="/assets/img/image%207-800.webp" />
+    
+      <source media="(max-width: 1400px)" srcset="/assets/img/image%207-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img class="img-fluid rounded z-depth-1" src="/assets/img/image%207.png" />
+
+  </picture>
+
+  
+
+</figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>- even if there is no change in product nor in individual users’ engagement, mix shift can still drive a decrease in overall engagement.
+</code></pre></div></div>
+
+<ul>
+  <li><strong>Inherent changes in engagement:</strong></li>
+</ul>
+
+<figure>
+
+  <picture>
+    
+      <source media="(max-width: 480px)" srcset="/assets/img/image%208-480.webp" />
+    
+      <source media="(max-width: 800px)" srcset="/assets/img/image%208-800.webp" />
+    
+      <source media="(max-width: 1400px)" srcset="/assets/img/image%208-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img class="img-fluid rounded z-depth-1" src="/assets/img/image%208.png" />
+
+  </picture>
+
+  
+
+</figure>
+
+<h1 id="engagement">Engagement</h1>
+
+<ul>
+  <li>production-consumption framework of user-generated content (e.g., Facebook, Instagram, Snapchat, YouTube)</li>
+  <li>professionally generated content(e.g., Netflix, HBO)</li>
+  <li>marketplaces like eBay, Amazon and Airbnb</li>
+  <li>messaging products like iMessage, WhatsApp and Facebook Messenger</li>
+</ul>
+
+<p><strong>News Feeds</strong></p>
+
+<ul>
+  <li>Content created is inventory, how an individual user’s inventory scales with their number of connections and the total content creation in the system.</li>
+  <li>open follow feed</li>
+  <li>Time duration</li>
+</ul>
+
+<p><strong>Professionally Generated Content</strong></p>
+<ul>
+  <li>Content production can be broken down into three phases: creation, capture and sharing</li>
+  <li>Creators type:
+    <ul>
+      <li>here are four primary categories of creators: friends, pages, groups and news</li>
+    </ul>
+  </li>
+  <li>Content Sharing:
+    <ul>
+      <li>content sharing can be understood across multiple dimensions: <strong>audience, social acceptability of the content, feedback, perception, content type, format type, product simplicity and permanence of the content.</strong></li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>Inventory and consumption:</strong></p>
+<ul>
+  <li>Amount of inventory available</li>
+  <li>Number of connections</li>
+  <li>Consumption of available inventory</li>
+  <li>Number of posts consumed</li>
+  <li>Percent of users who are inventory constrained</li>
+  <li>Increasing the right connections helps drive engagement.</li>
+  <li>Identifying needy users and ensuring they have a great experience is paramount to long-term product success.</li>
+  <li>Understanding the consumption and availability of inventory for different segments and identifying specific opportunities will help serve them better and thereby improve the overall product.</li>
+</ul>
+
+<figure>
+
+  <picture>
+    
+      <source media="(max-width: 480px)" srcset="/assets/img/image%209-480.webp" />
+    
+      <source media="(max-width: 800px)" srcset="/assets/img/image%209-800.webp" />
+    
+      <source media="(max-width: 1400px)" srcset="/assets/img/image%209-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img class="img-fluid rounded z-depth-1" src="/assets/img/image%209.png" />
+
+  </picture>
+
+  
+
+</figure>
+
+<h2 id="marketplace">Marketplace</h2>
+
+<ul>
+  <li>Organizations that create value primarily by enabling direct interactions between two (or more) distinct types of affiliated customers. American Express, PayPal, eBay, Uber, Facebook, iPhone, WhatsApp, Netflix, Amazon, and YouTube can all be considered as two-sided marketplaces.</li>
+  <li>These platforms exist because there is a need for an intermediary to match the supply and demand sides of the platform in a more efficient way.</li>
+</ul>
+
+<h3 id="network-effects">Network effects</h3>
+
+<ul>
+  <li>an additional user of a <a href="https://en.wikipedia.org/wiki/Good_(economics)">good</a> or <a href="https://en.wikipedia.org/wiki/Service_(economics)">service</a> increases the value of that product to others</li>
+  <li>Incentivizing the production of unique high-quality supply, creating a great brand and loyalty are very important considerations in building a strong two-sided marketplace.</li>
+</ul>]]></content><author><name></name></author><category term="notes" /><category term="productanalysis" /><summary type="html"><![CDATA[Product evolution, retention, segmentation.]]></summary></entry><entry><title type="html">Bayesian Statistics and Applications</title><link href="https://manqiul.github.io/blog/2021/bayesian-statistics/" rel="alternate" type="text/html" title="Bayesian Statistics and Applications" /><published>2021-08-20T21:01:00+00:00</published><updated>2021-08-20T21:01:00+00:00</updated><id>https://manqiul.github.io/blog/2021/bayesian-statistics</id><content type="html" xml:base="https://manqiul.github.io/blog/2021/bayesian-statistics/"><![CDATA[<figure>
+
+  <picture>
+    
+      <source media="(max-width: 480px)" srcset="/assets/img/bayesians-1-480.webp" />
+    
+      <source media="(max-width: 800px)" srcset="/assets/img/bayesians-1-800.webp" />
+    
+      <source media="(max-width: 1400px)" srcset="/assets/img/bayesians-1-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img class="img-fluid rounded z-depth-1" src="/assets/img/bayesians-1.jpg" />
+
+  </picture>
+
+  
+
+</figure>
+
+<figure>
+
+  <picture>
+    
+      <source media="(max-width: 480px)" srcset="/assets/img/bayesians-2-480.webp" />
+    
+      <source media="(max-width: 800px)" srcset="/assets/img/bayesians-2-800.webp" />
+    
+      <source media="(max-width: 1400px)" srcset="/assets/img/bayesians-2-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img class="img-fluid rounded z-depth-1" src="/assets/img/bayesians-2.jpg" />
+
+  </picture>
+
+  
+
+</figure>
+
+<figure>
+
+  <picture>
+    
+      <source media="(max-width: 480px)" srcset="/assets/img/bayesians-3-480.webp" />
+    
+      <source media="(max-width: 800px)" srcset="/assets/img/bayesians-3-800.webp" />
+    
+      <source media="(max-width: 1400px)" srcset="/assets/img/bayesians-3-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img class="img-fluid rounded z-depth-1" src="/assets/img/bayesians-3.jpg" />
+
+  </picture>
+
+  
+
+</figure>
+
+<figure>
+
+  <picture>
+    
+      <source media="(max-width: 480px)" srcset="/assets/img/bayesians-4-480.webp" />
+    
+      <source media="(max-width: 800px)" srcset="/assets/img/bayesians-4-800.webp" />
+    
+      <source media="(max-width: 1400px)" srcset="/assets/img/bayesians-4-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img class="img-fluid rounded z-depth-1" src="/assets/img/bayesians-4.jpg" />
+
+  </picture>
+
+  
+
+</figure>
+
+<figure>
+
+  <picture>
+    
+      <source media="(max-width: 480px)" srcset="/assets/img/bayesians-5-480.webp" />
+    
+      <source media="(max-width: 800px)" srcset="/assets/img/bayesians-5-800.webp" />
+    
+      <source media="(max-width: 1400px)" srcset="/assets/img/bayesians-5-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img class="img-fluid rounded z-depth-1" src="/assets/img/bayesians-5.jpg" />
+
+  </picture>
+
+  
+
+</figure>
+
+<figure>
+
+  <picture>
+    
+      <source media="(max-width: 480px)" srcset="/assets/img/bayesians-6-480.webp" />
+    
+      <source media="(max-width: 800px)" srcset="/assets/img/bayesians-6-800.webp" />
+    
+      <source media="(max-width: 1400px)" srcset="/assets/img/bayesians-6-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img class="img-fluid rounded z-depth-1" src="/assets/img/bayesians-6.jpg" />
+
+  </picture>
+
+  
+
+</figure>
+
+<figure>
+
+  <picture>
+    
+      <source media="(max-width: 480px)" srcset="/assets/img/bayesians-7-480.webp" />
+    
+      <source media="(max-width: 800px)" srcset="/assets/img/bayesians-7-800.webp" />
+    
+      <source media="(max-width: 1400px)" srcset="/assets/img/bayesians-7-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img class="img-fluid rounded z-depth-1" src="/assets/img/bayesians-7.jpg" />
+
+  </picture>
+
+  
+
+</figure>]]></content><author><name></name></author><category term="notes" /><category term="math" /><summary type="html"><![CDATA[Bayes formula,conjugate prior, bayesian regression.]]></summary></entry></feed>
